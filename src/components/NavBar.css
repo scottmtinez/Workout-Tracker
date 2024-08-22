@@ -1,0 +1,37 @@
+.header-sub-title{
+    color: white;
+    font-size: 18px;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: inline-flex;
+    justify-content: space-around;
+    padding-left: 10px;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px black;
+  }
+  
+  nav ul li a:hover {
+    color: #7a879e;
+  }
+  
+  li{
+    padding-right: 10px;
+  }
+
+  .NavBar-link.active-tab a {
+    color: #7a879e;
+    border-radius: 5px;
+    padding: 5px;
+    border: solid 1px #7a879e; 
+  }
+  
+  .NavBar-link.active-tab {
+    padding-bottom: 5px;
+  }
+  

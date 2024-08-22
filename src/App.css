@@ -45,9 +45,10 @@
 
 .header{
   color: white;
+  font-weight: bold;
   padding-left: 10px;
   font-size: 34px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0);
+  text-shadow: 2px 2px 4px black;
 }
 
 .header-sub-title{
@@ -65,6 +66,7 @@ nav ul {
 nav ul li a {
   color: white;
   text-decoration: none;
+  text-shadow: 2px 2px 4px black;
 }
 
 nav ul li a:hover {

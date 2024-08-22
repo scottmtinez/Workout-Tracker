@@ -96,12 +96,17 @@ body {
         transform: scale(1.1);
     } 
 
-    .test{
-        background-color: transparent;
-        color: black;
-        text-align: center;
-        
-    }
+    .home-exercise-sub-title {
+        background-color: rgba(0, 0, 0, 0.3);
+        color: white;
+        text-align: center; /* Center text horizontally */
+        margin: 0 auto; /* Center text horizontally if the width is set */
+        display: flex; /* Use flexbox for centering */
+        align-items: center; /* Center text vertically */
+        justify-content: center; /* Center text horizontally */
+        padding: 5px;
+      }
+      
 }
 
 /* 
