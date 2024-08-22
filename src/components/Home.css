@@ -1,0 +1,125 @@
+/*
+    --- Global ---
+*/
+
+*{
+    background-color: rgb(0, 0, 80);
+}
+
+body {
+    padding: 25px;
+  }
+
+
+
+/*  
+    --------------------------------
+    Screen Size - For Laptop 
+    --------------------------------
+*/
+
+@media only screen and (min-width: 1100px){
+    .home-main-container{
+        background-color: transparent;
+    }
+
+    .home-main-image{
+        width: 100%;
+        height: 450px;
+        background-color: grey;
+        border: solid black 1px;
+        border-radius: 10px;
+        background-image: url('https://fullpotentialpt.com/wp-content/uploads/2021/01/Not-Getting-The-Results.jpg');
+        background-repeat: no-repeat; 
+        background-size: cover; 
+        box-shadow: 0 4px 8px rgb(0, 0, 0);
+    }
+
+    .home-exercies-tab-container{
+        margin-top: 20px;
+        display: flex; 
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .home-exercies-tab-container > div {
+        flex: 1; /* Allow items to grow and fill the container */
+        margin: 0 10px; /* Add some margin between items */
+        background-color: #f0f0f0; /* Example background color */
+        border-radius: 5px; /* Example border radius */
+    }
+
+    .home-exercies1-plan, .home-exercies2-plan, .home-exercies3-plan, .home-exercies4-plan, .home-exercies5-plan{
+        width: 100px;
+        height: 250px;
+        border-radius: 10px;
+        border: solid black 1px;
+        box-shadow: 0 4px 8px rgb(0, 0, 0);
+    } 
+
+    .home-exercies1-plan{
+        background-image: url("https://cdn.exercise.com/images/4226/ios_large.png");
+        background-repeat: no-repeat; 
+        background-size: cover;
+        background-position: center; 
+    }
+
+    .home-exercies2-plan{
+        background-image: url("https://img.freepik.com/premium-photo/handsome-bodybuilder-man-sexy-muscular-guy-with-athlete-body-back-training-posing-black-background_474717-35442.jpg");
+        background-repeat: no-repeat; 
+        background-size: cover;
+        background-position: center; 
+    }
+
+    .home-exercies3-plan{
+        background-image: url("https://images.squarespace-cdn.com/content/v1/523851bce4b0a71f5f108966/1486498203064-XOG4CTNCT7CEWW9C79RR/image-asset.jpeg");
+        background-repeat: no-repeat; 
+        background-size: cover;
+        background-position: center; 
+    }
+
+    .home-exercies4-plan{
+        background-image: url("https://media.istockphoto.com/id/1843875289/photo/man-athlete-exercising-glutes-with-dumbbell.jpg?b=1&s=170667a&w=0&k=20&c=l3eStbo4WJU4k_CdyK3EOUDqZbjOuN_LkjU9GlQIACU=");
+        background-repeat: no-repeat; 
+        background-size: cover;
+        background-position: center; 
+    }
+
+    .home-exercies5-plan{
+        background-image: url("https://img.freepik.com/premium-photo/healthy-lifestyle-concept-sport-fitness-fit-macho-track-suit-urban-landscape-man-stretching-warming-up-muscles-before-workout-athlete-training-sunny-summer-day-outdoors_474717-47602.jpg");
+        background-repeat: no-repeat; 
+        background-size: cover;
+        background-position: center; 
+    }
+
+    .home-exercies1-plan:hover, .home-exercies2-plan:hover, .home-exercies3-plan:hover, .home-exercies4-plan:hover, .home-exercies5-plan:hover{
+        transform: scale(1.1);
+    } 
+
+    .test{
+        background-color: transparent;
+        color: black;
+        text-align: center;
+        
+    }
+}
+
+/* 
+    ---------------------------------
+    Screen Size - For Medium Screens
+    --------------------------------
+*/
+
+@media only screen and (min-width: 600px) and (max-width: 1100px){
+
+}
+
+/*  
+    --------------------------------
+    Screen Size - For Mobile 
+    --------------------------------
+*/
+
+@media only screen and (max-width: 600px){
+
+}
