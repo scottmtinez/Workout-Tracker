@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const url = 'mongodb+srv://scottmtinez:Daisy77sxp.@workouttrackercluster.h0dvi.mongodb.net/';
+const url = 'HIDDEN';
 const dbName = 'WorkoutTracker';
 let db;
 
