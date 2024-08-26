@@ -1,0 +1,67 @@
+.Account-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    height: 50vh;          
+}
+  
+  .Account-form-login{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgb(0, 0, 0);
+    text-align: center;
+    display: none;
+  }
+
+  .Account-form-signup {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgb(0, 0, 0);
+    text-align: center;
+  }
+  
+  .Account-form-login h1,
+  .Account-form-signup h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    background-color: transparent;
+    font-size: 24px;
+    font-weight: bolder;
+  }
+  
+  .Account-form-login input,
+  .Account-form-signup input {
+    display: block;
+    background-color: lightgrey;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .Account-form-login input[type="submit"],
+  .Account-form-signup input[type="submit"] {
+    background-color: #45B1E8; /* Your blue color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .Account-form-login input[type="submit"]:hover,
+  .Account-form-signup input[type="submit"]:hover {
+    background-color: #3a92c1;
+  }
+  
