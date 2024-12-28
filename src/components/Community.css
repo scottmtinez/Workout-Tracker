@@ -1,0 +1,51 @@
+/*
+    --- Community.css ---
+*/
+
+/*  
+    --------------------------------
+    Screen Size - For Laptop 
+    --------------------------------
+*/
+
+@media only screen and (min-width: 1100px){
+    .Community-container{
+        margin: 0 auto;
+        width: 100%;
+        height: auto;
+        border: solid 1px white;
+        border-radius: 10px;
+    }
+
+    .Community-title{
+        color: white;
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    .Community-leaderboard{
+        text-align: center;
+        color: white;
+        margin-bottom: 25px;
+    }
+}
+
+/* 
+    ---------------------------------
+    Screen Size - For Medium Screens
+    --------------------------------
+*/
+
+@media only screen and (min-width: 600px) and (max-width: 1100px){
+
+}
+
+/*  
+    --------------------------------
+    Screen Size - For Mobile 
+    --------------------------------
+*/
+
+@media only screen and (max-width: 600px){
+
+}

@@ -1,0 +1,54 @@
+.App {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  min-height: 95vh;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.footer {
+  color: 	#fc7f2c;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: auto;
+}
+
+.header {
+  color: 	#fc7f2c;
+  font-weight: bold;
+  padding-left: 10px;
+  font-size: 34px;
+  text-shadow: 2px 2px 4px black;
+}
+
+.header-sub-title {
+  color: white	#212121;
+  font-size: 18px;
+}
+
+nav ul {
+  list-style: none;
+  display: inline-flex;
+  justify-content: space-around;
+  padding-left: 10px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  color: #7a879e;
+}
+
+li {
+  padding-right: 10px;
+}
