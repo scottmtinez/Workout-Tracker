@@ -26,6 +26,12 @@ function Home(){
                         <span className='home-exercise-sub-title'>MORNING YOGA PLAN</span>
                     </div>
                 </div>
+                <div className='home-x-container'>
+                    
+                </div>
+                <div className='home-y-container'>
+
+                </div>
             </div>
         </div>
     );
