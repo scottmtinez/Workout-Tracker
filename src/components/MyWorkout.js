@@ -94,6 +94,7 @@ function MyWorkout() {
                         <li className='MyWorkout-exercise-item' key={index}>
                             <div className='MyWorkout-exercise-row'>
                                 <span className='MyWorkout-exercise-name'>{exercise.name}</span>
+                                <button className='MyWorkout-exercise-delete-btn' onClick={() => handleDeleteExercise(index)}>-</button>
                             </div>
 
                             <div className='MyWorkout-exercise-row'>
@@ -111,6 +112,7 @@ function MyWorkout() {
                                     onChange={(e) => handleExerciseChange(index, 'reps', e.target.value)}
                                     placeholder='Reps'
                                 />
+                                 <button className='MyWorkout-add-set-btn' onClick={() => handleAddSet(index)}>+</button>
                             </div>
 
                             <div className='MyWorkout-exercise-sets'>
@@ -130,18 +132,19 @@ function MyWorkout() {
                                             onChange={(e) => handleSetChange(index, setIndex, 'reps', e.target.value)}
                                             placeholder={`Set ${setIndex + 1} Reps`}
                                         />
+                                         <button className='MyWorkout-add-set-btn' onClick={() => handleAddSet(index)}>+</button>
                                         <button
                                             className='MyWorkout-delete-set-btn'
                                             onClick={() => handleDeleteSet(index, setIndex)}
                                         >
-                                            Delete Set
+                                            - 
                                         </button>
+                                        
                                     </div>
                                 ))}
-                                <button className='MyWorkout-add-set-btn' onClick={() => handleAddSet(index)}>Add Set</button>
+                
                             </div>
 
-                            <button className='MyWorkout-exercise-delete-btn' onClick={() => handleDeleteExercise(index)}>Delete</button>
                         </li>
                     ))}
                 </ul>
@@ -152,7 +155,7 @@ function MyWorkout() {
                     onChange={(e) => setNewExercise(e.target.value)}
                     placeholder='Add new exercise'
                 />
-                <button className='MyWorkout-exercise-add-btn' onClick={handleAddExercise}>Add Exercise</button>
+                <button className='MyWorkout-exercise-add-btn' onClick={handleAddExercise}>+</button>
             </div>
 
             {!isWorkoutStarted ? (
