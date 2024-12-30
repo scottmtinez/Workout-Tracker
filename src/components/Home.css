@@ -3,14 +3,12 @@
 */
 
 *{
-    background-color: rgb(0, 0, 80);
+    background-color: black;
 }
 
 body {
     padding: 25px;
 }
-
-
 
 /*  
     --------------------------------
@@ -19,94 +17,119 @@ body {
 */
 
 @media only screen and (min-width: 1100px){
-    .home-main-container{
-        background-color: transparent;
-    }
-
-    .home-main-image{
-        width: 100%;
-        height: 450px;
-        background-color: grey;
-        border: solid black 1px;
-        border-radius: 10px;
-        background-image: url('https://fullpotentialpt.com/wp-content/uploads/2021/01/Not-Getting-The-Results.jpg');
-        background-repeat: no-repeat; 
-        background-size: cover; 
-        box-shadow: 0 4px 8px rgb(0, 0, 0);
+    .home-main-image {
+        width: 100%; /* Stretches the div to the full width of the screen */
+        height: 300px; /* Sets the height to 300px */
+        border: 2px solid #FF6F00; /* Orange outline */
+        box-sizing: border-box; /* Ensures the border is included in the total size */
+        border-radius: 10px; /* Adds rounded corners */
+        background-image: url('https://images.pexels.com/photos/16966364/pexels-photo-16966364/free-photo-of-men-in-competition-at-gym-in-black-and-white.jpeg'); /* Add your image path here */
+        background-size: cover; /* Ensures the background covers the entire div */
+        background-position: center; /* Centers the background image */
     }
 
     .home-exercies-tab-container{
-        margin-top: 20px;
-        display: flex; 
-        justify-content: space-between;
-        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between; /* Evenly space out the items */
+        flex-wrap: wrap; /* Allows wrapping on smaller screens */
+        gap: 10px; /* Adds spacing between the boxes */
+        margin: 20px 0;
     }
 
-    .home-exercies-tab-container > div {
-        flex: 1; /* Allow items to grow and fill the container */
-        margin: 0 10px; /* Add some margin between items */
-        background-color: #f0f0f0; /* Example background color */
-        border-radius: 5px; /* Example border radius */
+    .home-exercies1-plan, 
+    .home-exercies2-plan, 
+    .home-exercies3-plan, 
+    .home-exercies4-plan, 
+    .home-exercies5-plan {
+        border: 2px solid rgb(194, 193, 193);/* Primary Action */
+        color: black;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        width: 200px; /* Adjust the width to fit as needed */
+        height: 300px;
+        min-width: 120px; /* Ensures a minimum width for readability */
+    }
+    
+    .home-exercies1-plan:hover, 
+    .home-exercies2-plan:hover, 
+    .home-exercies3-plan:hover, 
+    .home-exercies4-plan:hover, 
+    .home-exercies5-plan:hover{
+        background-color: v; 
+        color: black;
     }
 
-    .home-exercies1-plan, .home-exercies2-plan, .home-exercies3-plan, .home-exercies4-plan, .home-exercies5-plan{
-        width: 100px;
-        height: 250px;
-        border-radius: 10px;
-        border: solid black 1px;
-        box-shadow: 0 4px 8px rgb(0, 0, 0);
-    } 
+    .home-exercies1-plan:active, 
+    .home-exercies2-plan:active, 
+    .home-exercies3-plan:active, 
+    .home-exercies4-plan:active, 
+    .home-exercies5-plan:active{
+        transform: scale(1.05);
+    }
 
+    .home-exercise-sub-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        background-color: transparent;
+        text-align: center;
+        color: rgb(194, 193, 193);
+    }
+    
     .home-exercies1-plan{
-        background-image: url("https://cdn.exercise.com/images/4226/ios_large.png");
-        background-repeat: no-repeat; 
-        background-size: cover;
-        background-position: center; 
+        background-image: url('https://t4.ftcdn.net/jpg/02/51/45/49/360_F_251454966_MSoiZITSgkSgIs2qGr1SnfJOYdhd6ieJ.jpg'); /* Add your image path here */
+        background-size: cover; /* Ensures the background covers the entire div */
+        background-position: center; /* Centers the background image */
     }
 
     .home-exercies2-plan{
-        background-image: url("https://img.freepik.com/premium-photo/handsome-bodybuilder-man-sexy-muscular-guy-with-athlete-body-back-training-posing-black-background_474717-35442.jpg");
-        background-repeat: no-repeat; 
-        background-size: cover;
-        background-position: center; 
+        background-image: url('https://e1.pxfuel.com/desktop-wallpaper/554/24/desktop-wallpaper-best-4-fitness-on-hip-gym-boy.jpg');
+        background-size: cover; /* Ensures the background covers the entire div */
+        background-position: right; /* Centers the background image */
     }
 
     .home-exercies3-plan{
-        background-image: url("https://images.squarespace-cdn.com/content/v1/523851bce4b0a71f5f108966/1486498203064-XOG4CTNCT7CEWW9C79RR/image-asset.jpeg");
-        background-repeat: no-repeat; 
-        background-size: cover;
-        background-position: center; 
+        background-image: url('https://media.istockphoto.com/id/147323384/photo/black-amd-white-image-of-girl-running-towards-the-light.jpg?s=612x612&w=0&k=20&c=nOyucQvYcmVRTdmNI3hGkEXbhsaPa3u5lINapADAJsA=');
+        background-size: cover; /* Ensures the background covers the entire div */
+        background-position: center; /* Centers the background image */
     }
 
     .home-exercies4-plan{
-        background-image: url("https://media.istockphoto.com/id/1843875289/photo/man-athlete-exercising-glutes-with-dumbbell.jpg?b=1&s=170667a&w=0&k=20&c=l3eStbo4WJU4k_CdyK3EOUDqZbjOuN_LkjU9GlQIACU=");
-        background-repeat: no-repeat; 
-        background-size: cover;
-        background-position: center; 
+        background-image: url('https://www.barbellmedicine.com/wp-content/uploads/2022/10/ROM-1.webp');
+        background-size: cover; /* Ensures the background covers the entire div */
+        background-position: center; /* Centers the background image */
     }
 
     .home-exercies5-plan{
-        background-image: url("https://img.freepik.com/premium-photo/healthy-lifestyle-concept-sport-fitness-fit-macho-track-suit-urban-landscape-man-stretching-warming-up-muscles-before-workout-athlete-training-sunny-summer-day-outdoors_474717-47602.jpg");
-        background-repeat: no-repeat; 
-        background-size: cover;
-        background-position: center; 
+        background-image: url('https://media.istockphoto.com/id/814593700/photo/girl-doing-yoga-stretching-on-black-background.jpg?s=612x612&w=0&k=20&c=moQij027F6Zgn5sVmJHCKhwcTEey_xR9uDxaEaEPx7w=');
+        background-size: cover; /* Ensures the background covers the entire div */
+        background-position: center; /* Centers the background image */
     }
 
-    .home-exercies1-plan:hover, .home-exercies2-plan:hover, .home-exercies3-plan:hover, .home-exercies4-plan:hover, .home-exercies5-plan:hover{
-        transform: scale(1.1);
-    } 
+    .home-x-container{
+        width: 100%; /* Stretches the div to the full width of the screen */
+        height: 300px; /* Sets the height to 300px */
+        border: 2px solid #fc7f2c; /* Orange outline */
+        border-radius: 10px;
+        background-image: url('https://dg.imgix.net/physical-exercise-what-i-do-and-why-hp5twwzd-en/landscape/physical-exercise-what-i-do-and-why-hp5twwzd.jpg?ts=1483978080&ixlib=rails-4.3.1&auto=format%2Ccompress&fit=min&w=700&h=394&dpr=2&ch=Width%2CDPR');
+        background-size: cover; /* Ensures the background covers the entire div */
+        background-position: center; /* Centers the background image */
+    }
 
-    .home-exercise-sub-title {
-        background-color: rgba(0, 0, 0, 0.3);
-        color: white;
-        text-align: center; /* Center text horizontally */
-        margin: 0 auto; /* Center text horizontally if the width is set */
-        display: flex; /* Use flexbox for centering */
-        align-items: center; /* Center text vertically */
-        justify-content: center; /* Center text horizontally */
-        padding: 5px;
-      }
-      
+    .home-y-container{
+        width: 100%; /* Stretches the div to the full width of the screen */
+        height: 300px; /* Sets the height to 300px */
+        border: 2px solid #fc7f2c; /* Orange outline */
+        border-radius: 10px;
+        margin: 20px 0;
+        background-image: url('https://images.squarespace-cdn.com/content/v1/62e07998c607200de01bd066/1b718a00-75e7-4906-b80d-b0f195a20fc9/gym%26fitness+%28Banner+%28Landscape%29%29.jpg');
+        background-size: cover; /* Ensures the background covers the entire div */
+        background-position: center; /* Centers the background image */
+    }
+
+    
 }
 
 /* 
