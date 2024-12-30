@@ -1,5 +1,5 @@
 .header-sub-title{
-    color: white;
+    color: 	#212121;
     font-size: 18px;
   }
   
@@ -11,13 +11,12 @@
   }
   
   nav ul li a {
-    color: white;
+    color: rgb(194, 193, 193);
     text-decoration: none;
-    text-shadow: 2px 2px 4px black;
   }
   
   nav ul li a:hover {
-    color: #7a879e;
+    color: rgb(194, 193, 193);
   }
   
   li{
@@ -26,10 +25,10 @@
 
 
   .NavBar-link.active-tab a {
-    color: #7a879e;
+    color: rgb(194, 193, 193);
     border-radius: 5px;
     padding: 5px;
-    border: solid 1px #7a879e; 
+    border: solid 1px rgb(194, 193, 193); 
   }
   
   .NavBar-link.active-tab {
