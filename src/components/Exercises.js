@@ -6,6 +6,9 @@ function Exercises(){
         <div className='Excersises-container'>
             <div className=''>
                 Exercises Page
+                <div class name=''>
+        
+               </div>
             </div>
         </div>
     );
