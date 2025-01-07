@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Account.css';
 
 function Account() {
+    const [isLoginForm, setIsLoginForm] = useState(true); // Toggle state for forms
     const [loginData, setLoginData] = useState({ username: '', password: '' });
     const [signupData, setSignupData] = useState({
         username: '',
@@ -20,7 +21,7 @@ function Account() {
     };
 
     const handleLoginSubmit = async (e) => {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault();
         try {
             const response = await fetch('http://localhost:5000/login', {
                 method: 'POST',
@@ -30,7 +31,6 @@ function Account() {
             const result = await response.json();
             if (response.ok) {
                 console.log(result);
-                // Handle successful login (e.g., redirect to another page)
             } else {
                 console.error(result.error);
                 alert(result.error);
@@ -56,7 +56,6 @@ function Account() {
             if (response.ok) {
                 console.log(result);
                 alert('User created successfully');
-                // Optionally redirect or clear the form
             } else {
                 console.error(result.error);
                 alert(result.error);
@@ -66,77 +65,85 @@ function Account() {
             alert('Error signing up');
         }
     };
-    
 
     return (
-        <div className='Account-container'>
-            <form className='Account-form-login' onSubmit={handleLoginSubmit}>
-                <h1 className='Account-login-title'>LOGIN</h1>
-                <input
-                    type='text'
-                    name='username'
-                    placeholder='Username...'
-                    value={loginData.username}
-                    onChange={handleLoginChange}
-                    required
-                />
-                <input
-                    type='password'
-                    name='password'
-                    placeholder='Password...'
-                    value={loginData.password}
-                    onChange={handleLoginChange}
-                    required
-                />
-                <input type='submit' value='Login'/>
-            </form>
-
-            <form className='Account-form-signup' onSubmit={handleSignupSubmit}>
-                <h1 className='Account-signup-title'>SIGN UP</h1>
-                <input
-                    type='text'
-                    name='username'
-                    placeholder='Username...'
-                    value={signupData.username}
-                    onChange={handleSignupChange}
-                    required
-                />
-                <input
-                    type='text'
-                    name='fullName'
-                    placeholder='Full Name...'
-                    value={signupData.fullName}
-                    onChange={handleSignupChange}
-                    required
-                />
-                <input
-                    type='email'
-                    name='email'
-                    placeholder='Email...'
-                    value={signupData.email}
-                    onChange={handleSignupChange}
-                    required
-                />
-                <input
-                    type='password'
-                    name='password'
-                    placeholder='Password...'
-                    value={signupData.password}
-                    onChange={handleSignupChange}
-                    required
-                />
-                <input
-                    type='password'
-                    name='confirmPassword'
-                    placeholder='Confirm Password...'
-                    value={signupData.confirmPassword}
-                    onChange={handleSignupChange}
-                    required
-                />
-                <input type='submit' value='Signup'/>
-            </form>
+        <div className="Account-container">
+            {isLoginForm ? (
+                <div>
+                    <form className="Account-form-login" onSubmit={handleLoginSubmit}>
+                        <h1 className="Account-login-title">LOGIN</h1>
+                        <input
+                            type="text"
+                            name="username"
+                            placeholder="Username..."
+                            value={loginData.username}
+                            onChange={handleLoginChange}
+                            required
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password..."
+                            value={loginData.password}
+                            onChange={handleLoginChange}
+                            required
+                        />
+                        <input type="submit" value="Login" />
+                        <button className='to-signup-box' onClick={() => setIsLoginForm(false)}>Don't have an account? <span className='link'>Signup</span></button>
+                    </form>
+                </div>
+            ) : (
+                <div>
+                    <form className="Account-form-signup" onSubmit={handleSignupSubmit}>
+                        <h1 className="Account-signup-title">SIGN UP</h1>
+                        <input
+                            type="text"
+                            name="username"
+                            placeholder="Username..."
+                            value={signupData.username}
+                            onChange={handleSignupChange}
+                            required
+                        />
+                        <input
+                            type="text"
+                            name="fullName"
+                            placeholder="Full Name..."
+                            value={signupData.fullName}
+                            onChange={handleSignupChange}
+                            required
+                        />
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Email..."
+                            value={signupData.email}
+                            onChange={handleSignupChange}
+                            required
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password..."
+                            value={signupData.password}
+                            onChange={handleSignupChange}
+                            required
+                        />
+                        <input
+                            type="password"
+                            name="confirmPassword"
+                            placeholder="Confirm Password..."
+                            value={signupData.confirmPassword}
+                            onChange={handleSignupChange}
+                            required
+                        />
+                        <input type="submit" value="Signup" />
+                        <button className='to-login-box' onClick={() => setIsLoginForm(true)}>Already have an account? <span className='link'>Login</span></button>
+                    </form>
+                </div>
+            )}
         </div>
     );
 }
 
 export default Account;
+
