@@ -6,19 +6,18 @@
 }
   
   .Account-form-login{
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: rgb(26, 26, 26);
+    border: 1px solid #fc7f2c;
     border-radius: 8px;
     padding: 20px;
     width: 300px;
     box-shadow: 0 4px 8px rgb(0, 0, 0);
     text-align: center;
-    display: none;
   }
 
   .Account-form-signup {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: rgb(26, 26, 26);
+    border: 1px solid #fc7f2c;
     border-radius: 8px;
     padding: 20px;
     width: 300px;
@@ -30,7 +29,7 @@
   .Account-form-signup h1 {
     margin-bottom: 20px;
     font-size: 24px;
-    color: #333;
+    color: #ddd;
     background-color: transparent;
     font-size: 24px;
     font-weight: bolder;
@@ -52,7 +51,7 @@
   
   .Account-form-login input[type="submit"],
   .Account-form-signup input[type="submit"] {
-    background-color: #45B1E8; /* Your blue color */
+    background-color: #2E8B57; /* Your blue color */
     color: white;
     border: none;
     cursor: pointer;
@@ -62,5 +61,39 @@
   
   .Account-form-login input[type="submit"]:hover,
   .Account-form-signup input[type="submit"]:hover {
-    background-color: #3a92c1;
+    background-color: #2E8B57;
+  }
+
+  .Account-form-login input[type="submit"]:active,
+  .Account-form-signup input[type="submit"]:active {
+    background-color: #2E8B57;
+    transform: scale(1.1); /* Slightly increase size */
+    transition: transform 0.2s ease-in-out; /* Smooth animation */
+  }
+
+
+  .to-signup-box{
+    background-color: transparent;
+    border: transparent;
+    color: #ddd;
+  }
+
+  .to-login-box{
+    background-color: transparent;
+    border: transparent;
+    color: #ddd;
+  }
+
+  .link{
+    color: purple;
+    text-decoration: none;
+    background-color: transparent;
+  }
+
+  .link:hover{
+    color: #fc7f2c;
+  }
+
+  .link:active{
+    color: #fc7f2c;
   }
