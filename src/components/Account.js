@@ -41,17 +41,56 @@ const Account = () => {
         }
     };
                                                                                                                     
-    const handleSignupSubmit = (e) => {
+    const handleSignupSubmit = async (e) => {
         e.preventDefault();
+    
+        // Check if passwords match
         if (signupData.password !== signupData.confirmPassword) {
             alert("Passwords do not match.");
             return;
         }
-        // Simulate successful signup
-        setUser({ username: signupData.username, fullName: signupData.fullName, email: signupData.email }); // Set user data
-        setSignupData({ username: "", fullName: "", email: "", password: "", confirmPassword: "" }); // Clear signup form
+    
+        const userPayload = {
+            username: signupData.username,
+            fullName: signupData.fullName,
+            email: signupData.email,
+            password: signupData.password,
+        };
+    
+        try {
+            const response = await fetch("http://localhost:5000/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(userPayload),
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                // Set the user data in state if the signup was successful
+                setUser({
+                    username: signupData.username,
+                    fullName: signupData.fullName,
+                    email: signupData.email,
+                });
+    
+                // Clear the form fields
+                setSignupData({ username: "", fullName: "", email: "", password: "", confirmPassword: "" });
+    
+                alert("User created successfully");
+    
+                // Optionally, you can also navigate to the profile page or another view after successful signup
+                // For example, if you are using React Router:
+                // history.push('/profile'); // Uncomment if you use React Router
+            } else {
+                alert(data.error || "Something went wrong.");
+            }
+        } catch (error) {
+            alert("An error occurred while signing up.");
+        }
     };
-
+    
+    
     return (
         <div className="Account-container">
             {user ? (
@@ -60,9 +99,13 @@ const Account = () => {
                     <p className='Account-user-fullName'>{user.fullName}</p>
                     <p className='Account-user-email'>{user.email}</p>
                     <p className='Account-user-email'>{user.password}</p>
+                    <div className='Account-user-workout-heatmap'>
+                        
+                    </div>
                     <button className="Account-logout-button" onClick={() => setUser(null)}>
                         Logout
                     </button>
+                    
                 </div>
             ) : isLoginForm ? (
                 <div>
