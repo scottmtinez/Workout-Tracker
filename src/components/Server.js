@@ -30,11 +30,13 @@ const bcrypt = require('bcrypt');
             if (!user) {
                 return res.status(400).json({ error: 'User not found!' });
             }
+
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
                 return res.status(400).json({ error: 'Invalid credentials' });
             }
-            // Return user data (excluding password)
+
+            // Exclude the password from the response
             const { password: _, ...userWithoutPassword } = user;
             res.status(200).json(userWithoutPassword);
         } catch (error) {
@@ -46,19 +48,36 @@ const bcrypt = require('bcrypt');
     app.post('/signup', async (req, res) => {
         const { username, fullName, email, password } = req.body;
         try {
-            console.log('Received data:', req.body);
+            // Ensure all fields are filled in
+            if (!username || !fullName || !email || !password) {
+                return res.status(400).json({ error: 'All fields are required' });
+            }
+
+            // Check if the username already exists in the database
+            const existingUser = await db.collection('Accounts').findOne({ username });
+            if (existingUser) {
+                return res.status(400).json({ error: 'Username already taken' });
+            }
+
+            // Hash the password
             const hashedPassword = await bcrypt.hash(password, 10);
-            console.log('Hashed password:', hashedPassword);
+            console.log('Hashed password:', hashedPassword);  // Log the hashed password
+            
+            // Create the user object
             const user = { username, fullName, email, password: hashedPassword };
+
+            // Insert the new user into the database
             const result = await db.collection('Accounts').insertOne(user);
-            console.log('Insert result:', result);
-            if (result.insertedCount === 1) {
-                res.status(201).json({ message: 'User created successfully' });
+            console.log('Insert result:', result);  // Log the result of the insert operation
+
+            if (result.insertedId) {
+                res.status(201).json({ message: 'User created successfully', user: { username, fullName, email } });
             } else {
-                res.status(500).json({ error: 'Failed to create user', details: result });
+                console.log('Error: No insertedId in the result');
+                throw new Error('Failed to create user in the database');
             }
         } catch (error) {
-            console.error('Error in signup route:', error);
+            console.error('Error in signup route:', error);  // Log the actual error details
             res.status(500).json({ error: 'Failed to create user', details: error.message });
         }
     });
