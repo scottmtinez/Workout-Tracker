@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import './Account.css';
 
-function Account() {
-    const [isLoginForm, setIsLoginForm] = useState(true); // Toggle state for forms
-    const [loginData, setLoginData] = useState({ username: '', password: '' });
-    const [signupData, setSignupData] = useState({
-        username: '',
-        fullName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-    });
+const Account = () => {
+    const [isLoginForm, setIsLoginForm] = useState(true);
+    const [loginData, setLoginData] = useState({ username: "", password: "" });
+    const [signupData, setSignupData] = useState({ username: "", fullName: "", email: "", password: "", confirmPassword: "" });
+    const [user, setUser] = useState(null); // State to hold the logged-in user's information
 
     const handleLoginChange = (e) => {
-        setLoginData({ ...loginData, [e.target.name]: e.target.value });
+        setLoginData({ ...loginData, [e.target.name]: e.target.value }); 
     };
 
     const handleSignupChange = (e) => {
@@ -23,52 +18,55 @@ function Account() {
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(loginData)
+            const response = await fetch("http://localhost:5000/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    username: loginData.username,
+                    password: loginData.password,
+                }),
             });
-            const result = await response.json();
+    
             if (response.ok) {
-                console.log(result);
+                const userData = await response.json();
+                setUser(userData); // Set the user data in state
+                setLoginData({ username: "", password: "" }); // Clear login form
             } else {
-                console.error(result.error);
-                alert(result.error);
+                const errorData = await response.json();
+                alert(errorData.error || "Failed to login");
             }
         } catch (error) {
-            console.error('Error logging in:', error);
+            console.error("Login error:", error);
+            alert("An error occurred while logging in.");
         }
     };
+                                                                                                                    
 
-    const handleSignupSubmit = async (e) => {
+    const handleSignupSubmit = (e) => {
         e.preventDefault();
         if (signupData.password !== signupData.confirmPassword) {
-            alert('Passwords do not match');
+            alert("Passwords do not match.");
             return;
         }
-        try {
-            const response = await fetch('http://localhost:5000/signup', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(signupData)
-            });
-            const result = await response.json();
-            if (response.ok) {
-                console.log(result);
-                alert('User created successfully');
-            } else {
-                console.error(result.error);
-                alert(result.error);
-            }
-        } catch (error) {
-            console.error('Error signing up:', error);
-            alert('Error signing up');
-        }
+        // Simulate successful signup
+        setUser({ username: signupData.username, fullName: signupData.fullName, email: signupData.email }); // Set user data
+        setSignupData({ username: "", fullName: "", email: "", password: "", confirmPassword: "" }); // Clear signup form
     };
 
     return (
         <div className="Account-container">
-            {isLoginForm ? (
+            {user ? (
+                <div className="Account-user-info-box">
+                    <h2 className='Account-user-info-title'>{user.username}</h2>
+                    
+                    {user.fullName && <p><strong>Full Name:</strong> {user.fullName}</p>}
+                    {user.email && <p><strong>Email:</strong> {user.email}</p>}
+
+                    <button className="logout-button" onClick={() => setUser(null)}>
+                        Logout
+                    </button>
+                </div>
+            ) : isLoginForm ? (
                 <div>
                     <form className="Account-form-login" onSubmit={handleLoginSubmit}>
                         <h1 className="Account-login-title">LOGIN</h1>
@@ -89,7 +87,15 @@ function Account() {
                             required
                         />
                         <input type="submit" value="Login" />
-                        <button className='to-signup-box' onClick={() => setIsLoginForm(false)}>Don't have an account? <span className='link'>Signup</span></button>
+                        <button
+                            className="to-signup-box"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setIsLoginForm(false);
+                            }}
+                        >
+                            Don't have an account? <span className="link">Signup</span>
+                        </button>
                     </form>
                 </div>
             ) : (
@@ -137,13 +143,20 @@ function Account() {
                             required
                         />
                         <input type="submit" value="Signup" />
-                        <button className='to-login-box' onClick={() => setIsLoginForm(true)}>Already have an account? <span className='link'>Login</span></button>
+                        <button
+                            className="to-login-box"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setIsLoginForm(true);
+                            }}
+                        >
+                            Already have an account? <span className="link">Login</span>
+                        </button>
                     </form>
                 </div>
             )}
         </div>
     );
-}
+};
 
 export default Account;
-
