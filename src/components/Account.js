@@ -41,7 +41,6 @@ const Account = () => {
         }
     };
                                                                                                                     
-
     const handleSignupSubmit = (e) => {
         e.preventDefault();
         if (signupData.password !== signupData.confirmPassword) {
@@ -58,11 +57,10 @@ const Account = () => {
             {user ? (
                 <div className="Account-user-info-box">
                     <h2 className='Account-user-info-title'>{user.username}</h2>
-                    
-                    {user.fullName && <p><strong>Full Name:</strong> {user.fullName}</p>}
-                    {user.email && <p><strong>Email:</strong> {user.email}</p>}
-
-                    <button className="logout-button" onClick={() => setUser(null)}>
+                    <p className='Account-user-fullName'>{user.fullName}</p>
+                    <p className='Account-user-email'>{user.email}</p>
+                    <p className='Account-user-email'>{user.password}</p>
+                    <button className="Account-logout-button" onClick={() => setUser(null)}>
                         Logout
                     </button>
                 </div>
