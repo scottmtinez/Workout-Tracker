@@ -1,10 +1,12 @@
-.Account-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;    
-    height: 50vh;          
-}
+/* --- Account Main CSS --- */
+  .Account-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;    
+      height: 50vh;          
+  }
   
+/* --- Account Login Form CSS --- */
   .Account-form-login{
     background-color: rgb(26, 26, 26);
     border: 1px solid #fc7f2c;
@@ -15,6 +17,7 @@
     text-align: center;
   }
 
+/* --- Account Signup Form CSS --- */
   .Account-form-signup {
     background-color: rgb(26, 26, 26);
     border: 1px solid #fc7f2c;
@@ -25,6 +28,7 @@
     text-align: center;
   }
   
+/* --- Form H1 --- */
   .Account-form-login h1,
   .Account-form-signup h1 {
     margin-bottom: 20px;
@@ -35,6 +39,7 @@
     font-weight: bolder;
   }
   
+/* --- Form Input Boxes --- */
   .Account-form-login input,
   .Account-form-signup input {
     display: block;
@@ -49,6 +54,7 @@
     color: #333;
   }
   
+/* --- Form Submit Button --- */
   .Account-form-login input[type="submit"],
   .Account-form-signup input[type="submit"] {
     background-color: #2E8B57; /* Your blue color */
@@ -59,11 +65,13 @@
     font-weight: bold;
   }
   
+/* --- Form Submit Button Hover --- */
   .Account-form-login input[type="submit"]:hover,
   .Account-form-signup input[type="submit"]:hover {
     background-color: #2E8B57;
   }
 
+/* --- Form Submit Button Active --- */
   .Account-form-login input[type="submit"]:active,
   .Account-form-signup input[type="submit"]:active {
     background-color: #2E8B57;
@@ -71,7 +79,7 @@
     transition: transform 0.2s ease-in-out; /* Smooth animation */
   }
 
-
+/* --- Form Link --- */
   .to-signup-box{
     background-color: transparent;
     border: transparent;
