@@ -97,3 +97,60 @@
   .link:active{
     color: #fc7f2c;
   }
+
+  /* --- Users Information "After loggin in" --- */
+    .Account-user-info-box{
+      background-color: rgb(26, 26, 26);
+      border: 1px solid #fc7f2c;
+      border-radius: 8px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 4px 8px rgb(0, 0, 0);
+      text-align: center;
+    }
+
+    .Account-user-info-title{
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #ddd;
+      background-color: transparent;
+      font-size: 24px;
+      font-weight: bolder;
+    }
+
+    .Account-user-fullName,  .Account-user-email, .Account-user-password{
+      display: block;
+      background-color: lightgrey;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #333;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .Account-logout-button{
+      background-color: #2E8B57; /* Your blue color */
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 5px;
+      padding: 5px;
+    }
+
+    .Account-logout-button:hover{
+      background-color: #1f9653;
+    }
+
+    .Account-logout-button:active{
+      background-color: #2E8B57;
+      transform: scale(1.1); /* Slightly increase size */
+      transition: transform 0.2s ease-in-out; /* Smooth animation */
+    }
+
+
+/* --- --- */
