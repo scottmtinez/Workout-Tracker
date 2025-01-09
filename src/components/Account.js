@@ -19,9 +19,9 @@ const Account = () => {
     // Save user data to localStorage when the user state changes
         useEffect(() => {
             if (user) {
-                localStorage.setItem('user', JSON.stringify(user));
+                localStorage.setItem('user', JSON.stringify(user)); // Save user data to localStorage
             } else {
-                localStorage.removeItem('user');
+                localStorage.removeItem('user'); // Remove user data from localStorage when the user logs out
             }
         }, [user]);
 
