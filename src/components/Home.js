@@ -45,6 +45,9 @@ const Home = () => {
                 <div className='home-y-container'>
 
                 </div>
+                <div className='home-user-counter'>
+                    
+                </div>
             </div>
         </div>
     );
