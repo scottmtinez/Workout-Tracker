@@ -2,7 +2,19 @@ import React, { useState, useEffect } from 'react';
 import './Home.css';
 
 
-function Home(){
+const Home = () => {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        // Retrieve user data from localStorage
+        const storedUser = localStorage.getItem('user');
+
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+            //console.log('User data retrieved from localStorage:', storedUser); // For Testing
+        }
+    }, []); // Runs only once when the component mounts
+
     return (
         <div className='home-background'>
             <div className='home-main-container'>
