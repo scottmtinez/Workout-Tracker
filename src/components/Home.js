@@ -3,7 +3,8 @@ import './Home.css';
 
 
 const Home = () => {
-    const [user, setUser] = useState(null);
+    //States
+        const [user, setUser] = useState(null);
 
     // Retrieve user data from localStorage when the component mounts
         useEffect(() => {
