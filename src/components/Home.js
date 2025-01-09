@@ -5,15 +5,15 @@ import './Home.css';
 const Home = () => {
     const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        // Retrieve user data from localStorage
-        const storedUser = localStorage.getItem('user');
+    // Retrieve user data from localStorage when the component mounts
+        useEffect(() => {
+            const storedUser = localStorage.getItem('user');
 
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-            //console.log('User data retrieved from localStorage:', storedUser); // For Testing
-        }
-    }, []); // Runs only once when the component mounts
+            if (storedUser) {
+                setUser(JSON.parse(storedUser));
+                //console.log('User data retrieved from localStorage:', storedUser); // For Testing
+            }
+        }, []); // Runs only once when the component mounts
 
     return (
         <div className='home-background'>
