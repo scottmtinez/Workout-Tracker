@@ -1,94 +1,116 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Account.css';
 
 const Account = () => {
-    const [isLoginForm, setIsLoginForm] = useState(true);
-    const [loginData, setLoginData] = useState({ username: "", password: "" });
-    const [signupData, setSignupData] = useState({ username: "", fullName: "", email: "", password: "", confirmPassword: "" });
-    const [user, setUser] = useState(null); // State to hold the logged-in user's information
+    // States
+        const [isLoginForm, setIsLoginForm] = useState(true);
+        const [loginData, setLoginData] = useState({ username: "", password: "" });
+        const [signupData, setSignupData] = useState({ username: "", fullName: "", email: "", password: "", confirmPassword: "" });
+        const [user, setUser] = useState(null); // State to hold the logged-in user's information
 
-    const handleLoginChange = (e) => {
-        setLoginData({ ...loginData, [e.target.name]: e.target.value }); 
-    };
-
-    const handleSignupChange = (e) => {
-        setSignupData({ ...signupData, [e.target.name]: e.target.value });
-    };
-
-    const handleLoginSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch("http://localhost:5000/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    username: loginData.username,
-                    password: loginData.password,
-                }),
-            });
-    
-            if (response.ok) {
-                const userData = await response.json();
-                setUser(userData); // Set the user data in state
-                setLoginData({ username: "", password: "" }); // Clear login form
-            } else {
-                const errorData = await response.json();
-                alert(errorData.error || "Failed to login");
+    // Load user data from localStorage when the component mounts
+        useEffect(() => {
+            const savedUser = localStorage.getItem('user');
+            if (savedUser) {
+                setUser(JSON.parse(savedUser));
             }
-        } catch (error) {
-            console.error("Login error:", error);
-            alert("An error occurred while logging in.");
-        }
-    };
-                                                                                                                    
-    const handleSignupSubmit = async (e) => {
-        e.preventDefault();
-    
-        // Check if passwords match
-        if (signupData.password !== signupData.confirmPassword) {
-            alert("Passwords do not match.");
-            return;
-        }
-    
-        const userPayload = {
-            username: signupData.username,
-            fullName: signupData.fullName,
-            email: signupData.email,
-            password: signupData.password,
+        }, []);
+
+    // Save user data to localStorage when the user state changes
+        useEffect(() => {
+            if (user) {
+                localStorage.setItem('user', JSON.stringify(user));
+            } else {
+                localStorage.removeItem('user');
+            }
+        }, [user]);
+
+    // Handles the change event for the login form inputs
+        const handleLoginChange = (e) => {
+            setLoginData({ ...loginData, [e.target.name]: e.target.value }); 
         };
-    
-        try {
-            const response = await fetch("http://localhost:5000/signup", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(userPayload),
-            });
-    
-            const data = await response.json();
-    
-            if (response.ok) {
-                // Set the user data in state if the signup was successful
-                setUser({
-                    username: signupData.username,
-                    fullName: signupData.fullName,
-                    email: signupData.email,
+
+    // Handles the change event for the signup form inputs
+        const handleSignupChange = (e) => {
+            setSignupData({ ...signupData, [e.target.name]: e.target.value });
+        };
+
+    // Handles the login form submission
+        const handleLoginSubmit = async (e) => {
+            e.preventDefault();
+            try {
+                const response = await fetch("http://localhost:5000/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        username: loginData.username,
+                        password: loginData.password,
+                    }),
                 });
-    
-                // Clear the form fields
-                setSignupData({ username: "", fullName: "", email: "", password: "", confirmPassword: "" });
-    
-                alert("User created successfully");
-    
-                // Optionally, you can also navigate to the profile page or another view after successful signup
-                // For example, if you are using React Router:
-                // history.push('/profile'); // Uncomment if you use React Router
-            } else {
-                alert(data.error || "Something went wrong.");
+        
+                if (response.ok) {
+                    const userData = await response.json();
+                    setUser(userData); // Set the user data in state
+                    setLoginData({ username: "", password: "" }); // Clear login form
+                } else {
+                    const errorData = await response.json();
+                    alert(errorData.error || "Failed to login");
+                }
+            } catch (error) {
+                console.error("Login error:", error);
+                alert("An error occurred while logging in.");
             }
-        } catch (error) {
-            alert("An error occurred while signing up.");
-        }
-    };
+        };
+                  
+    // Handles the signup form submission
+        const handleSignupSubmit = async (e) => {
+            e.preventDefault();
+        
+            // Check if passwords match
+            if (signupData.password !== signupData.confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
+        
+            const userPayload = {
+                username: signupData.username,
+                fullName: signupData.fullName,
+                email: signupData.email,
+                password: signupData.password,
+            };
+        
+            try {
+                const response = await fetch("http://localhost:5000/signup", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(userPayload),
+                });
+        
+                const data = await response.json();
+        
+                if (response.ok) {
+                    // Set the user data in state if the signup was successful
+                    setUser({
+                        username: signupData.username,
+                        fullName: signupData.fullName,
+                        email: signupData.email,
+                    });
+        
+                    // Clear the form fields
+                    setSignupData({ username: "", fullName: "", email: "", password: "", confirmPassword: "" });
+        
+                    alert("User created successfully");
+        
+                    // Optionally, you can also navigate to the profile page or another view after successful signup
+                    // For example, if you are using React Router:
+                    // history.push('/profile'); // Uncomment if you use React Router
+                } else {
+                    alert(data.error || "Something went wrong.");
+                }
+            } catch (error) {
+                alert("An error occurred while signing up.");
+            }
+        };
     
     
     return (
