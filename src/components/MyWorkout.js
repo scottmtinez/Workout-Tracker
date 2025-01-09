@@ -2,10 +2,22 @@ import React, { useState, useEffect } from 'react';
 import './MyWorkout.css';
 
 function MyWorkout() {
-    const [isWorkoutStarted, setIsWorkoutStarted] = useState(false);
-    const [elapsedTime, setElapsedTime] = useState(0);
-    const [exercises, setExercises] = useState([]);
-    const [newExercise, setNewExercise] = useState('');
+    //States
+        const [isWorkoutStarted, setIsWorkoutStarted] = useState(false);
+        const [elapsedTime, setElapsedTime] = useState(0);
+        const [exercises, setExercises] = useState([]);
+        const [newExercise, setNewExercise] = useState('');
+        const [user, setUser] = useState(null);
+    
+      // Retrieve user data from localStorage when the component mounts
+        useEffect(() => {
+          const storedUser = localStorage.getItem('user');
+    
+          if (storedUser) {
+            setUser(JSON.parse(storedUser));
+            console.log('User data retrieved from localStorage:', storedUser); // For Testing
+          }
+        }, []); // Runs only once when the component mounts
 
     useEffect(() => {
         let interval;
