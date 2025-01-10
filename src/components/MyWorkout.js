@@ -8,6 +8,7 @@ function MyWorkout() {
         const [exercises, setExercises] = useState([]);
         const [newExercise, setNewExercise] = useState('');
         const [user, setUser] = useState(null);
+        const [stoppedTime, setStoppedTime] = useState(null)
     
     // Retrieve user data from localStorage when the component mounts
         useEffect(() => {
@@ -35,10 +36,16 @@ function MyWorkout() {
     // Start and stop workout stopwatch buttons
         const startWorkout = () => {
             setIsWorkoutStarted(true);
+            setStoppedTime(null); // Reset the stopped time when starting again
         };
 
         const stopWorkout = () => {
             setIsWorkoutStarted(false);
+            setStoppedTime(elapsedTime); // Save the current elapsed time
+
+            console.log('Stop button clicked!');
+            console.log('Elapsed Time:', elapsedTime); // Log the current elapsed time: Testing
+            console.log('Stopped Time:', elapsedTime); // Log the value being saved: Testing
         };
 
     // Reset workout stopwatch button
@@ -46,6 +53,7 @@ function MyWorkout() {
             setIsWorkoutStarted(false);
             setElapsedTime(0);
             setExercises([]);
+            setStoppedTime(null); // Reset stopped time
         };
 
     // Add and delete exercises
