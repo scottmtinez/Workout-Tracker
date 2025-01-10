@@ -9,51 +9,68 @@ function MyWorkout() {
         const [newExercise, setNewExercise] = useState('');
         const [user, setUser] = useState(null);
         const [stoppedTime, setStoppedTime] = useState(null)
+        const [startTime, setStartTime] = useState(null); 
     
-    // Retrieve user data from localStorage when the component mounts
+    // Retrieve user data and workout state when the component mounts
         useEffect(() => {
-          const storedUser = localStorage.getItem('user');
-    
-          if (storedUser) {
-            setUser(JSON.parse(storedUser));
-            console.log('User data retrieved from localStorage:', storedUser); // For Testing
-          }
-        }, []); // Runs only once when the component mounts
+            const storedUser = localStorage.getItem('user');
+            const storedStartTime = localStorage.getItem('startTime'); // Retrieve start time
+            const storedElapsedTime = localStorage.getItem('elapsedTime');
+
+            if (storedUser) {
+                setUser(JSON.parse(storedUser));
+            }
+
+            if (storedStartTime && storedElapsedTime) {
+                const currentTime = Date.now();
+                const timeSinceStart = Math.floor((currentTime - parseInt(storedStartTime, 10)) / 1000);
+                setElapsedTime(parseInt(storedElapsedTime, 10) + timeSinceStart); // Resume timer
+                setStartTime(parseInt(storedStartTime, 10));
+                setIsWorkoutStarted(true);
+            }
+        }, []);
 
     // Stopwatch functionality
         useEffect(() => {
             let interval;
             if (isWorkoutStarted) {
                 interval = setInterval(() => {
-                    setElapsedTime((prevTime) => prevTime + 1);
+                    const currentTime = Date.now();
+                    const timeSinceStart = Math.floor((currentTime - startTime) / 1000);
+                    setElapsedTime(timeSinceStart);
                 }, 1000);
-            } else if (!isWorkoutStarted && elapsedTime !== 0) {
+            } else {
                 clearInterval(interval);
             }
             return () => clearInterval(interval);
-        }, [isWorkoutStarted]);
+        }, [isWorkoutStarted, startTime]);
 
     // Start and stop workout stopwatch buttons
         const startWorkout = () => {
+            const currentTime = Date.now();
+            setStartTime(currentTime); // Save the current timestamp
+            localStorage.setItem('startTime', currentTime); // Persist to localStorage
+            localStorage.setItem('elapsedTime', 0); // Reset elapsed time in localStorage
+            setElapsedTime(0);
             setIsWorkoutStarted(true);
-            setStoppedTime(null); // Reset the stopped time when starting again
         };
 
         const stopWorkout = () => {
             setIsWorkoutStarted(false);
-            setStoppedTime(elapsedTime); // Save the current elapsed time
-
-            console.log('Stop button clicked!');
-            console.log('Elapsed Time:', elapsedTime); // Log the current elapsed time: Testing
-            console.log('Stopped Time:', elapsedTime); // Log the value being saved: Testing
+            const currentTime = Date.now();
+            const timeSinceStart = Math.floor((currentTime - startTime) / 1000);
+            localStorage.setItem('elapsedTime', timeSinceStart + elapsedTime); // Save elapsed time
+            localStorage.removeItem('startTime'); // Clear start time from localStorage
+            console.log('Workout stopped. Elapsed Time:', elapsedTime + timeSinceStart);
         };
 
     // Reset workout stopwatch button
         const resetWorkout = () => {
             setIsWorkoutStarted(false);
             setElapsedTime(0);
-            setExercises([]);
-            setStoppedTime(null); // Reset stopped time
+            setStartTime(null);
+            localStorage.removeItem('startTime');
+            localStorage.removeItem('elapsedTime');
         };
 
     // Add and delete exercises
