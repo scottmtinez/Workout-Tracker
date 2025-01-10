@@ -9,7 +9,7 @@ function MyWorkout() {
         const [newExercise, setNewExercise] = useState('');
         const [user, setUser] = useState(null);
     
-      // Retrieve user data from localStorage when the component mounts
+    // Retrieve user data from localStorage when the component mounts
         useEffect(() => {
           const storedUser = localStorage.getItem('user');
     
@@ -19,80 +19,88 @@ function MyWorkout() {
           }
         }, []); // Runs only once when the component mounts
 
-    useEffect(() => {
-        let interval;
-        if (isWorkoutStarted) {
-            interval = setInterval(() => {
-                setElapsedTime((prevTime) => prevTime + 1);
-            }, 1000);
-        } else if (!isWorkoutStarted && elapsedTime !== 0) {
-            clearInterval(interval);
-        }
-        return () => clearInterval(interval);
-    }, [isWorkoutStarted]);
+    // Stopwatch functionality
+        useEffect(() => {
+            let interval;
+            if (isWorkoutStarted) {
+                interval = setInterval(() => {
+                    setElapsedTime((prevTime) => prevTime + 1);
+                }, 1000);
+            } else if (!isWorkoutStarted && elapsedTime !== 0) {
+                clearInterval(interval);
+            }
+            return () => clearInterval(interval);
+        }, [isWorkoutStarted]);
 
-    const startWorkout = () => {
-        setIsWorkoutStarted(true);
-    };
+    // Start and stop workout stopwatch buttons
+        const startWorkout = () => {
+            setIsWorkoutStarted(true);
+        };
 
-    const stopWorkout = () => {
-        setIsWorkoutStarted(false);
-    };
+        const stopWorkout = () => {
+            setIsWorkoutStarted(false);
+        };
 
-    const resetWorkout = () => {
-        setIsWorkoutStarted(false);
-        setElapsedTime(0);
-        setExercises([]);
-    };
+    // Reset workout stopwatch button
+        const resetWorkout = () => {
+            setIsWorkoutStarted(false);
+            setElapsedTime(0);
+            setExercises([]);
+        };
 
-    const handleAddExercise = () => {
-        if (newExercise.trim() !== '') {
-            setExercises([...exercises, { name: newExercise.trim(), weight: '', reps: '', sets: [] }]);
-            setNewExercise('');
-        }
-    };
+    // Add and delete exercises
+        const handleAddExercise = () => {
+            if (newExercise.trim() !== '') {
+                setExercises([...exercises, { name: newExercise.trim(), weight: '', reps: '', sets: [] }]);
+                setNewExercise('');
+            }
+        };
 
-    const handleDeleteExercise = (index) => {
-        setExercises(exercises.filter((_, i) => i !== index));
-    };
+        const handleDeleteExercise = (index) => {
+            setExercises(exercises.filter((_, i) => i !== index));
+        };
 
-    const handleExerciseChange = (index, field, value) => {
-        setExercises(exercises.map((exercise, i) => (
-            i === index ? { ...exercise, [field]: value } : exercise
-        )));
-    };
+    // Exercise Handler
+        const handleExerciseChange = (index, field, value) => {
+            setExercises(exercises.map((exercise, i) => (
+                i === index ? { ...exercise, [field]: value } : exercise
+            )));
+        };
 
-    const handleAddSet = (index) => {
-        setExercises(exercises.map((exercise, i) => (
-            i === index ? { ...exercise, sets: [...exercise.sets, { weight: '', reps: '' }] } : exercise
-        )));
-    };
+    // Add Sets and Delete Sets
+        const handleAddSet = (index) => {
+            setExercises(exercises.map((exercise, i) => (
+                i === index ? { ...exercise, sets: [...exercise.sets, { weight: '', reps: '' }] } : exercise
+            )));
+        };
 
-    const handleDeleteSet = (exerciseIndex, setIndex) => {
-        setExercises(exercises.map((exercise, i) => (
-            i === exerciseIndex ? {
-                ...exercise,
-                sets: exercise.sets.filter((_, j) => j !== setIndex)
-            } : exercise
-        )));
-    };
+        const handleDeleteSet = (exerciseIndex, setIndex) => {
+            setExercises(exercises.map((exercise, i) => (
+                i === exerciseIndex ? {
+                    ...exercise,
+                    sets: exercise.sets.filter((_, j) => j !== setIndex)
+                } : exercise
+            )));
+        };
+    
+    // Set Change Handler
+        const handleSetChange = (exerciseIndex, setIndex, field, value) => {
+            setExercises(exercises.map((exercise, i) => (
+                i === exerciseIndex ? {
+                    ...exercise,
+                    sets: exercise.sets.map((set, j) => (
+                        j === setIndex ? { ...set, [field]: value } : set
+                    ))
+                } : exercise
+            )));
+        };
 
-    const handleSetChange = (exerciseIndex, setIndex, field, value) => {
-        setExercises(exercises.map((exercise, i) => (
-            i === exerciseIndex ? {
-                ...exercise,
-                sets: exercise.sets.map((set, j) => (
-                    j === setIndex ? { ...set, [field]: value } : set
-                ))
-            } : exercise
-        )));
-    };
-
-    const formatTime = (seconds) => {
-        const mins = Math.floor(seconds / 60);
-        const secs = seconds % 60;
-        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-    };
+    // Format Timer
+        const formatTime = (seconds) => {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        };
 
     return (
         <div className='MyWorkout-container'>
