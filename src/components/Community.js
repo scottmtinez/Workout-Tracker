@@ -33,6 +33,9 @@ function Community() {
     fetchData();
   }, []);
 
+// New Function 
+
+
   return (
     <div className='Community-container'>
       <h2 className='Community-title'>This Weeks Top Lifters</h2>
