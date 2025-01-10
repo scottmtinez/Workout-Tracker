@@ -14,11 +14,17 @@ function MyWorkout() {
     // Retrieve user data and workout state when the component mounts
         useEffect(() => {
             const storedUser = localStorage.getItem('user');
-            const storedStartTime = localStorage.getItem('startTime'); // Retrieve start time
+            const storedExercises = localStorage.getItem('exercises');
+            const storedStartTime = localStorage.getItem('startTime');
             const storedElapsedTime = localStorage.getItem('elapsedTime');
 
             if (storedUser) {
                 setUser(JSON.parse(storedUser));
+                console.log('User data retrieved from localStorage:', storedUser);
+            }
+
+            if (storedExercises) {
+                setExercises(JSON.parse(storedExercises)); // Load saved exercises
             }
 
             if (storedStartTime && storedElapsedTime) {
@@ -29,6 +35,13 @@ function MyWorkout() {
                 setIsWorkoutStarted(true);
             }
         }, []);
+
+    // Save exercises to localStorage when they change
+        useEffect(() => {
+            if (exercises.length > 0) {
+                localStorage.setItem('exercises', JSON.stringify(exercises));
+            }
+        }, [exercises]);
 
     // Stopwatch functionality
         useEffect(() => {
@@ -53,6 +66,9 @@ function MyWorkout() {
             localStorage.setItem('elapsedTime', 0); // Reset elapsed time in localStorage
             setElapsedTime(0);
             setIsWorkoutStarted(true);
+
+            console.log('Stop button clicked!'); // For Testing
+            console.log('Elapsed Time:', elapsedTime); // For Testing
         };
 
         const stopWorkout = () => {
@@ -61,7 +77,7 @@ function MyWorkout() {
             const timeSinceStart = Math.floor((currentTime - startTime) / 1000);
             localStorage.setItem('elapsedTime', timeSinceStart + elapsedTime); // Save elapsed time
             localStorage.removeItem('startTime'); // Clear start time from localStorage
-            console.log('Workout stopped. Elapsed Time:', elapsedTime + timeSinceStart);
+            console.log('Workout stopped. Elapsed Time:', elapsedTime + timeSinceStart); // For Testing
         };
 
     // Reset workout stopwatch button
@@ -71,53 +87,61 @@ function MyWorkout() {
             setStartTime(null);
             localStorage.removeItem('startTime');
             localStorage.removeItem('elapsedTime');
+            localStorage.removeItem('exercises'); 
         };
 
     // Add and delete exercises
         const handleAddExercise = () => {
             if (newExercise.trim() !== '') {
-                setExercises([...exercises, { name: newExercise.trim(), weight: '', reps: '', sets: [] }]);
+                const updatedExercises = [...exercises, { name: newExercise.trim(), weight: '', reps: '', sets: [] }];
+                setExercises(updatedExercises);
                 setNewExercise('');
             }
         };
 
         const handleDeleteExercise = (index) => {
-            setExercises(exercises.filter((_, i) => i !== index));
+            const updatedExercises = exercises.filter((_, i) => i !== index);
+            setExercises(updatedExercises);
         };
 
     // Exercise Handler
         const handleExerciseChange = (index, field, value) => {
-            setExercises(exercises.map((exercise, i) => (
+            const updatedExercises = exercises.map((exercise, i) =>
                 i === index ? { ...exercise, [field]: value } : exercise
-            )));
+            );
+            setExercises(updatedExercises);
         };
 
     // Add Sets and Delete Sets
         const handleAddSet = (index) => {
-            setExercises(exercises.map((exercise, i) => (
+            const updatedExercises = exercises.map((exercise, i) =>
                 i === index ? { ...exercise, sets: [...exercise.sets, { weight: '', reps: '' }] } : exercise
-            )));
+            );
+            setExercises(updatedExercises);
         };
 
         const handleDeleteSet = (exerciseIndex, setIndex) => {
-            setExercises(exercises.map((exercise, i) => (
-                i === exerciseIndex ? {
-                    ...exercise,
-                    sets: exercise.sets.filter((_, j) => j !== setIndex)
-                } : exercise
-            )));
+            const updatedExercises = exercises.map((exercise, i) =>
+                i === exerciseIndex
+                    ? { ...exercise, sets: exercise.sets.filter((_, j) => j !== setIndex) }
+                    : exercise
+            );
+            setExercises(updatedExercises);
         };
-    
+        
     // Set Change Handler
         const handleSetChange = (exerciseIndex, setIndex, field, value) => {
-            setExercises(exercises.map((exercise, i) => (
-                i === exerciseIndex ? {
-                    ...exercise,
-                    sets: exercise.sets.map((set, j) => (
-                        j === setIndex ? { ...set, [field]: value } : set
-                    ))
-                } : exercise
-            )));
+            const updatedExercises = exercises.map((exercise, i) =>
+                i === exerciseIndex
+                    ? {
+                        ...exercise,
+                        sets: exercise.sets.map((set, j) =>
+                            j === setIndex ? { ...set, [field]: value } : set
+                        ),
+                    }
+                    : exercise
+            );
+            setExercises(updatedExercises);
         };
 
     // Format Timer
