@@ -18,7 +18,7 @@ const Food = () => {
     return (
         <div className='Food-container'>
             <div className='Food-container'>
-                Food Page
+                Food / Calorie Tracker Page - Coming Soon...
             </div>
         </div>
     );
