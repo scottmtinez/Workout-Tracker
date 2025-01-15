@@ -6,6 +6,8 @@ import Home from './components/Home';
 import MyWorkout from './components/MyWorkout';
 import Community from './components/Community';
 import Exercises from './components/Exercises';
+import Food from './components/Food';
+import Dashboard from './components/Dashboard';
 import Account from './components/Account';
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
           <Route path="/myWorkout" element={<MyWorkout />} />
           <Route path="/community" element={<Community />} />
           <Route path="/exercises" element={<Exercises />} />
+          <Route path="/food" element={<Food />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/account" element={<Account />} />
         </Routes>
       </Router>
