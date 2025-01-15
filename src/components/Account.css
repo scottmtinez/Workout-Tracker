@@ -160,6 +160,20 @@
       transition: transform 0.2s ease-in-out; /* Smooth animation */
     }
 
+/* --- Bootstrap Icon -- */
+    .Account-login-icon{
+      background-color: transparent;
+    }
+
+    .bi.bi-people{
+      color: black;
+      background-color: transparent;
+    } 
+
+    .bi.bi-envelope{
+      color: black;
+      background-color: transparent;
+    }
 
 /* --- Heat Map CSS --- */
     .Account-user-workout-heatmap{
