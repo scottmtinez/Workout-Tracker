@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Account.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const Account = () => {
     // States
@@ -117,10 +118,9 @@ const Account = () => {
         <div className="Account-container">
             {user ? (
                 <div className="Account-user-info-box">
-                    <h2 className='Account-user-info-title'>{user.username}</h2>
-                    <p className='Account-user-fullName'>{user.fullName}</p>
-                    <p className='Account-user-email'>{user.email}</p>
-                    <p className='Account-user-email'>{user.password}</p>
+                    <h2 className='Account-user-info-title'> {user.username}</h2>
+                    <p className='Account-user-fullName'><i class="bi bi-people"></i> {user.fullName}</p>
+                    <p className='Account-user-email'><i class="bi bi-envelope"></i> {user.email}</p>
                     <div className='Account-user-workout-heatmap'>
                         
                     </div>
