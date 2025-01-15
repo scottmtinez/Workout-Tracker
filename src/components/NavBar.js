@@ -26,6 +26,12 @@ function NavBar() {
           <li className={`NavBar-link ${activeTab === '/exercises' ? 'active-tab' : ''}`}>
             <NavLink to='/exercises' className={activeTab === '/exercises' ? 'active-tab' : ''}>EXERCISES</NavLink>
           </li>
+          <li className={`NavBar-link ${activeTab === '/food' ? 'active-tab' : ''}`}>
+            <NavLink to='/food' className={activeTab === '/food' ? 'active-tab' : ''}>MY PLATE</NavLink>
+          </li>
+          <li className={`NavBar-link ${activeTab === '/dashboard' ? 'active-tab' : ''}`}>
+            <NavLink to='/dashboard' className={activeTab === '/dashboard' ? 'active-tab' : ''}>DASHBOARD</NavLink>
+          </li>
           <li className={`NavBar-link ${activeTab === '/account' ? 'active-tab' : ''}`}>
             <NavLink to='/account' className={activeTab === '/account' ? 'active-tab' : ''}>ACCOUNT</NavLink>
           </li>
