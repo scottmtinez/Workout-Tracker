@@ -3,9 +3,21 @@ import './NavBar.css';
 import { NavLink, useLocation } from 'react-router-dom';
 
 function NavBar() {
-  const location = useLocation();
-  const [activeTab, setActiveTab] = useState('/home');
-
+  //States
+    const [user, setUser] = useState(null);
+    const location = useLocation();
+    const [activeTab, setActiveTab] = useState('/home');
+      
+  // Retrieve user data from localStorage when the component mounts
+    useEffect(() => {
+      const storedUser = localStorage.getItem('user');
+      
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+        console.log('User data retrieved from localStorage:', storedUser); // For Testing
+        }
+      }, []); // Runs only once when the component mounts
+  
   useEffect(() => {
     setActiveTab(location.pathname); 
   }, [location]);
