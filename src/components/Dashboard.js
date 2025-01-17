@@ -17,7 +17,18 @@ const Dashboard = () => {
 
     return (
         <div className='Dashboard-container'>
-            
+            <div className='Dashboard-active-users'>
+              # Users
+            </div>
+            <div className='Dashboard-list-of-recent-users'>
+              List of Recent Users
+            </div>
+            <div className='Dashboard-list-of-recent-workouts'>
+
+            </div>
+            <div className='Dashboard-'>
+
+            </div>
         </div>
     );
 }
