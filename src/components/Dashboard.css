@@ -27,5 +27,13 @@
 
     }
 
-/* ---  --- */
+/* ---   --- */
+    .Dashboard-graph {
+        width: 100%;
+        height: 400px;
+        text-align: center;
+    }
 
+    .Dashboard-line-chart{
+        margin: 0 auto;
+    }
