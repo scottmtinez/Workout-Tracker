@@ -275,6 +275,12 @@ function MyWorkout() {
                                             >
                                                 -
                                             </button>
+                                            <button
+                                                className='MyWorkout-add-set-btn'
+                                                onClick={() => handleAddSet(index)}
+                                            >
+                                                +
+                                            </button>
                                         </div>
                                     ))}
                                 </div>
