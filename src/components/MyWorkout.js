@@ -18,7 +18,7 @@ function MyWorkout() {
     // Retrieve user data from localStorage when the component mounts
         useEffect(() => {
             const storedUser = localStorage.getItem('user');
-                
+            
             if (storedUser) {
                 setUser(JSON.parse(storedUser));
                 console.log('User data retrieved from localStorage:', storedUser); // For Testing
@@ -77,6 +77,14 @@ function MyWorkout() {
                 elapsedTime: elapsed,
             };
 
+            // Current user that's logged in
+                const user = JSON.parse(localStorage.getItem('user'));
+
+                if (!user) {
+                    console.error("User is not authenticated.");
+                    return;
+                }
+
             // Send workout data to the server
                 try {
                     const response = await fetch('http://localhost:5000/workouts', {
@@ -84,7 +92,10 @@ function MyWorkout() {
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(updatedWorkout),
+                        body: JSON.stringify({
+                            ...updatedWorkout,
+                            username: user.username,  // Include username in the request body
+                        }),
                     });
 
                     if (response.ok) {
