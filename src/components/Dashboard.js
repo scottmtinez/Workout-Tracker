@@ -83,6 +83,12 @@ const Dashboard = () => {
                     </tbody>
                 </table>
             </div>
+            
+            <div className='Dashboard-exercise-requests'>
+                <h2>Exercise Requests</h2>
+                *New exercies that need to be added to the database*
+
+            </div>
 
             <div className='Dashboard-graph'>
                 <h2>Users Workouts Overview</h2>
