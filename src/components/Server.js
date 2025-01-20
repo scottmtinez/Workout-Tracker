@@ -170,6 +170,17 @@ const Workout = mongoose.model('Workout', workoutSchema);
         }
     });
 
+// Fetch all exercises from the Exercises collection
+    app.get('/exercises', async (req, res) => {
+        try {
+            const exercises = await db.collection('Exercises').find({}).toArray();
+            res.status(200).json(exercises);
+        } catch (error) {
+            console.error('Error fetching exercises:', error.message);
+            res.status(500).json({ error: 'Failed to fetch exercises' });
+        }
+    });
+
 // Root Route
     app.get('/', (req, res) => {
         res.send('Server is running');
