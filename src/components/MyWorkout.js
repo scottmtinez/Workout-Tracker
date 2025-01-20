@@ -110,7 +110,30 @@ function MyWorkout() {
 
                 setWorkoutData(updatedWorkout);
                 setIsWorkoutStarted(false);
+
+            // Save exercise data to the server
+                await saveExercisesToDB(workoutData.exercises);
         };
+
+    // Save exercise data to the server
+        const saveExercisesToDB = async (exercises) => {
+            try {
+                const response = await fetch('http://localhost:5000/exercises', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ exercises }),
+                });
+        
+                if (!response.ok) {
+                    throw new Error('Failed to save exercises');
+                }
+        
+                const result = await response.json();
+                console.log(result.message); // "Exercises saved successfully"
+            } catch (error) {
+                console.error('Error saving exercises:', error);
+            }
+        };    
 
     // Reset workout
         const resetWorkout = () => {
