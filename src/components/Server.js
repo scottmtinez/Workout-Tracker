@@ -33,30 +33,6 @@ const mongoose = require('mongoose');
             process.exit(1); // Exit the application if connection fails
         });
 
-// Workout Schema
-    const workoutSchema = new mongoose.Schema({
-        username: { type: String, required: true },  // Add username to associate workout with a user
-        id: { type: Number, required: true },
-        elapsedTime: { type: Number, required: true },
-        startTime: { type: Date },
-        endTime: { type: Date },
-        exercises: [
-            {
-                name: { type: String, required: true },
-                weight: { type: Number },
-                reps: { type: Number },
-                sets: [
-                    {
-                        weight: { type: Number },
-                        reps: { type: Number },
-                    },
-                ],
-            },
-        ],
-    });
-
-    const Workout = mongoose.model('Workout', workoutSchema);
-
 // Login Route
     app.post('/login', async (req, res) => {
         const { username, password } = req.body;
@@ -116,6 +92,30 @@ const mongoose = require('mongoose');
         }
     });
 
+    // Workout Schema
+        const workoutSchema = new mongoose.Schema({
+            username: { type: String, required: true },  // Add username to associate workout with a user
+            id: { type: Number, required: true },
+            elapsedTime: { type: Number, required: true },
+            startTime: { type: Date },
+            endTime: { type: Date },
+            exercises: [
+                {
+                    name: { type: String, required: true },
+                    weight: { type: Number },
+                    reps: { type: Number },
+                    sets: [
+                        {
+                            weight: { type: Number },
+                            reps: { type: Number },
+                        },
+                    ],
+                },
+            ],
+        });
+
+const Workout = mongoose.model('Workout', workoutSchema);
+
 // Save Workout Data
     app.post('/workouts', async (req, res) => {
         const { username, id, elapsedTime, startTime, endTime, exercises } = req.body;
@@ -155,29 +155,17 @@ const mongoose = require('mongoose');
     app.post('/exercises', async (req, res) => {
         const { exercises } = req.body;
 
-        if (!exercises || !Array.isArray(exercises)) {
-            return res.status(400).json({ error: 'Invalid exercise data' });
+        if (!Array.isArray(exercises) || exercises.length === 0) {
+            return res.status(400).json({ error: 'Invalid or empty exercises array' });
         }
 
         try {
-            // Check if the exercises already exist in the database
-                const existingExercises = await db.collection('Exercises').find({
-                    name: { $in: exercises.map((e) => e.name) },
-                }).toArray();
+            // Assuming you're saving it to MongoDB
+                const result = await db.collection('Exercises').insertMany(exercises);
+                res.status(201).json({ message: 'Exercises saved successfully', result });
 
-                const existingNames = existingExercises.map((e) => e.name);
-
-            // Filter out exercises that already exist
-                const newExercises = exercises.filter((e) => !existingNames.includes(e.name));
-
-            // Insert new exercises
-                if (newExercises.length > 0) {
-                    await db.collection('Exercises').insertMany(newExercises);
-                }
-
-                res.status(200).json({ message: 'Exercises saved successfully' });
         } catch (error) {
-            console.error('Error saving exercises:', error);
+            console.error('Error saving exercises:', error.message);
             res.status(500).json({ error: 'Failed to save exercises' });
         }
     });
