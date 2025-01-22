@@ -20,7 +20,8 @@ const Home = () => {
         <div className='home-background'>
             <div className='home-main-container'>
                 <div className='home-main-image'>
-                    
+                    <h2 className='home-main-image-h2'>Push Your Limits</h2>
+                    <p className='home-main-image-desc'>Join the ultimate Crossfit experience today!</p>
                 </div>
                 <div className='home-exercies-tab-container'>
                     <div className='home-exercies1-plan'>
@@ -44,14 +45,11 @@ const Home = () => {
                         <span className='home-exercise-price'>$14.99</span>
                     </div>
                 </div>
-                <div className='home-x-container'>
-                    
+                <div className='home-running-container'>
+                    <p className='home-main-image-desc'>Challenge Yourself: Run a 5K!</p>
                 </div>
-                <div className='home-y-container'>
-
-                </div>
-                <div className='home-user-counter'>
-                    
+                <div className='home-crossfit-container'>
+                    <p className='home-main-image-desc'>Strength, Speed, and Endurance!</p>
                 </div>
             </div>
         </div>
