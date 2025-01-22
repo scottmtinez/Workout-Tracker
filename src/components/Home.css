@@ -10,12 +10,6 @@ body {
     padding: 25px;
 }
 
-/*  
-    --------------------------------
-    Screen Size - For Laptop 
-    --------------------------------
-*/
-
 @media only screen and (min-width: 1100px){
     .home-main-image {
         width: 100%; /* Stretches the div to the full width of the screen */
@@ -41,7 +35,7 @@ body {
     .home-exercies3-plan, 
     .home-exercies4-plan, 
     .home-exercies5-plan {
-        border: 2px solid rgb(194, 193, 193);/* Primary Action */
+        border: 2px solid rgb(194, 193, 193); /* Primary Action */
         color: black;
         border-radius: 8px;
         padding: 20px;
@@ -49,6 +43,10 @@ body {
         width: 200px; /* Adjust the width to fit as needed */
         height: 300px;
         min-width: 120px; /* Ensures a minimum width for readability */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Ensures content spacing */
+        align-items: center; /* Centers content horizontally */
     }
     
     .home-exercies1-plan:hover, 
@@ -75,7 +73,18 @@ body {
         letter-spacing: 1px;
         background-color: transparent;
         text-align: center;
-        color: rgb(194, 193, 193);
+        color: #fc7f2c;
+    }
+
+    .home-exercise-price{
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background-color: green;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-top: auto; /* Pushes the price tag to the bottom */
+        align-self: center; /* Ensures it stays centered */
     }
     
     .home-exercies1-plan{
@@ -129,24 +138,27 @@ body {
         background-position: center; /* Centers the background image */
     }
 
+/* --- Popup Box --- */
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
     
 }
 
-/* 
-    ---------------------------------
-    Screen Size - For Medium Screens
-    --------------------------------
-*/
 
 @media only screen and (min-width: 600px) and (max-width: 1100px){
 
 }
 
-/*  
-    --------------------------------
-    Screen Size - For Mobile 
-    --------------------------------
-*/
 
 @media only screen and (max-width: 600px){
 
