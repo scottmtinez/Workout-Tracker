@@ -10,7 +10,7 @@ function MyWorkout() {
             endTime: null,
             exercises: [],
         });
-
+ 
         const [newExercise, setNewExercise] = useState('');
         const [isWorkoutStarted, setIsWorkoutStarted] = useState(false);
         const [user, setUser] = useState(null);
