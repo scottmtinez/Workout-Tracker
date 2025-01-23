@@ -1,7 +1,7 @@
-/*  
-    --------------------------------
-    Screen Size - For Laptop 
-    --------------------------------
+/*
+    -------------------
+    -- MyWorkout CSS --
+    -------------------
 */
 
 @media only screen and (min-width: 1100px){
@@ -164,8 +164,330 @@
     .MyWorkout-exercise-sets{
         margin-left: 65px;
     }
-
 }
 
-/* --- --- */
+@media only screen and (min-width: 600px) and (max-width: 1100px){
+/* TITLE */
+    .MyWorkout-title{
+        color: #E0E0E0;
+        text-align: center;
+        text-decoration: underline;
+    }
 
+/* TIMER */
+    .MyWorkout-timer{
+        color: #E0E0E0;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .MyWorkout-timer-tracker{
+        color: #882400;
+        text-align: center;
+        font-size: 18px;
+    }
+
+/* EXERCISE TEMPLATE */
+    .MyWorkout-exercise-item{
+        list-style-type: none; 
+    }
+
+    .MyWorkout-exercise-name{
+        
+    }
+
+    .MyWorkout-exercise-weight, .MyWorkout-exercise-set-weight{
+        color: #E0E0E0;
+        border: solid 1px #FFA500;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    .MyWorkout-exercise-reps, .MyWorkout-exercise-set-reps{
+        color: #E0E0E0;
+        border: solid 1px #FFA500;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .MyWorkout-add-set-btn{
+        margin-top: 5px;
+        color: #E0E0E0;
+        font-size: 20px;
+        padding: 5px;
+        margin-left: 15px;
+        border: none;
+    }
+
+    .MyWorkout-add-set-btn:hover{
+        color: #E0E0E0;
+        transform: scale(1.1); 
+        transition: transform 0.2s ease-in-out; 
+    }
+
+    .MyWorkout-add-set-btn:active{
+        color: #E0E0E0;
+        transform: scale(1.2); 
+        transition: transform 0.2s ease-in-out; 
+    }
+
+    .MyWorkout-exercise-delete-btn{
+        margin-top: 5px;
+        color: #E0E0E0;
+        font-size: 20px;
+        padding: 5px;
+        margin-left: 15px;
+        border: none;
+    }
+
+    .MyWorkout-delete-set-btn{
+        margin-top: 5px;
+        color: #E0E0E0;
+        font-size: 20px;
+        padding: 5px;
+        margin-left: 15px;
+        border: none;
+    }
+
+    .MyWorkout-start-stop{
+        color: white;
+        font-size: 15px;
+        padding: 5px;
+    }
+
+    .MyWorkout-start-stop:hover{
+        color: white;
+        transform: scale(1.1); 
+        transition: transform 0.2s ease-in-out; 
+    }
+
+    .MyWorkout-start-stop:active{
+        color: white;
+        transform: scale(1.2); 
+        transition: transform 0.2s ease-in-out; 
+    }
+
+    .MyWorkout-exercise-input{
+        color: white;
+        font-size: 15px;
+        padding: 5px;
+        border: solid 1px #FFA500;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    .MyWorkout-exercise-add-btn{
+        color: white;
+        text-align: center;
+        font-size: 15px;
+        padding: 5px;
+        margin-bottom: 10px;
+        border: solid 1px #FFA500;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .MyWorkout-exercise-add-btn:hover{
+        color: white;
+        transform: scale(1.1); 
+        transition: transform 0.2s ease-in-out; 
+    }
+
+    .MyWorkout-exercise-add-btn:active{
+        color: white;
+        transform: scale(1.2); 
+        transition: transform 0.2s ease-in-out; 
+    }
+
+    .MyWorkout-exercise-delete-btn{
+        color: white;
+        font-size: 15px;
+        padding: 5px;
+        margin-left: 10px;
+        border-radius: 10px;
+    }
+
+    .MyWorkout-exercise-delete-btn:hover{
+        color: white;
+        transform: scale(1.1); 
+        transition: transform 0.2s ease-in-out; 
+    }
+
+    .MyWorkout-exercise-delete-btn:active{
+        color: white;
+        transform: scale(1.2); 
+        transition: transform 0.2s ease-in-out; 
+    }   
+
+    .MyWorkout-exercise-row{
+        margin-left: 35px;
+    }
+
+    .MyWorkout-exercise-sets{
+        margin-left: 65px;
+    }
+}
+
+@media only screen and (max-width: 600px){
+/* TITLE */
+    .MyWorkout-title{
+        color: #E0E0E0;
+        text-align: center;
+        text-decoration: underline;
+    }
+
+/* TIMER */
+    .MyWorkout-timer{
+        color: #E0E0E0;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .MyWorkout-timer-tracker{
+        color: #882400;
+        text-align: center;
+        font-size: 18px;
+    }
+
+/* EXERCISE TEMPLATE */
+    .MyWorkout-exercise-item{
+        list-style-type: none; 
+    }
+
+    .MyWorkout-exercise-name{
+        
+    }
+
+    .MyWorkout-exercise-weight, .MyWorkout-exercise-set-weight{
+        color: #E0E0E0;
+        border: solid 1px #FFA500;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        width: 55px;
+    }
+
+    .MyWorkout-exercise-reps, .MyWorkout-exercise-set-reps{
+        color: #E0E0E0;
+        border: solid 1px #FFA500;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 55px;
+    }
+
+    .MyWorkout-add-set-btn{
+        margin-top: 5px;
+        color: #E0E0E0;
+        font-size: 20px;
+        padding: 5px;
+        margin-left: 15px;
+        border: none;
+    }
+
+    .MyWorkout-add-set-btn:hover{
+        color: #E0E0E0;
+        transform: scale(1.1); 
+        transition: transform 0.2s ease-in-out; 
+    }
+
+    .MyWorkout-add-set-btn:active{
+        color: #E0E0E0;
+        transform: scale(1.2); 
+        transition: transform 0.2s ease-in-out; 
+    }
+
+    .MyWorkout-exercise-delete-btn{
+        margin-top: 5px;
+        color: #E0E0E0;
+        font-size: 20px;
+        padding: 5px;
+        margin-left: 15px;
+        border: none;
+    }
+
+    .MyWorkout-delete-set-btn{
+        margin-top: 5px;
+        color: #E0E0E0;
+        font-size: 20px;
+        padding: 5px;
+        margin-left: 15px;
+        border: none;
+    }
+
+    .MyWorkout-start-stop{
+        color: white;
+        font-size: 15px;
+        padding: 5px;
+    }
+
+    .MyWorkout-start-stop:hover{
+        color: white;
+        transform: scale(1.1); 
+        transition: transform 0.2s ease-in-out; 
+    }
+
+    .MyWorkout-start-stop:active{
+        color: white;
+        transform: scale(1.2); 
+        transition: transform 0.2s ease-in-out; 
+    }
+
+    .MyWorkout-exercise-input{
+        color: white;
+        font-size: 15px;
+        padding: 5px;
+        border: solid 1px #FFA500;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    .MyWorkout-exercise-add-btn{
+        color: white;
+        text-align: center;
+        font-size: 15px;
+        padding: 5px;
+        margin-bottom: 10px;
+        border: solid 1px #FFA500;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .MyWorkout-exercise-add-btn:hover{
+        color: white;
+        transform: scale(1.1); 
+        transition: transform 0.2s ease-in-out; 
+    }
+
+    .MyWorkout-exercise-add-btn:active{
+        color: white;
+        transform: scale(1.2); 
+        transition: transform 0.2s ease-in-out; 
+    }
+
+    .MyWorkout-exercise-delete-btn{
+        color: white;
+        font-size: 15px;
+        padding: 5px;
+        margin-left: 10px;
+        border-radius: 10px;
+    }
+
+    .MyWorkout-exercise-delete-btn:hover{
+        color: white;
+        transform: scale(1.1); 
+        transition: transform 0.2s ease-in-out; 
+    }
+
+    .MyWorkout-exercise-delete-btn:active{
+        color: white;
+        transform: scale(1.2); 
+        transition: transform 0.2s ease-in-out; 
+    }   
+
+    .MyWorkout-exercise-row{
+        margin-left: 35px;
+    }
+
+    .MyWorkout-exercise-sets{
+        margin-left: 65px;
+    }
+}
