@@ -1,3 +1,9 @@
+/*
+    -------------------
+    -- Exercises CSS --
+    -------------------
+*/
+
 /* --- Exercises CSS --- */
     .Excersises-container{
         display: flex;
@@ -12,19 +18,22 @@
         border-radius: 10px;
     }
 
-/* ---  --- */
+/* ---  Name --- */
     .Exercise-name{
         color: black;
     }
 
+/* ---  Title --- */
     .Exercise-title{
         color: whitesmoke;
     }
 
+/* ---  Table --- */
     .Exercises-container {
         padding: 20px;
     }
 
+/* ---  Table --- */
     .Exercises-table {
         width: 100%;
         border-collapse: collapse;
@@ -36,10 +45,13 @@
         padding: 10px;
         text-align: left;
         border: 1px solid #ddd;
+        background-color: #2a2a2a;
     }
 
     .Exercises-table th {
-        background-color: #f4f4f4;
+        background-color: black;
+        color: whitesmoke;
+        border: 1px solid #fc7f2c;
     }
 
     .Exercises-table tr:nth-child(even) {
