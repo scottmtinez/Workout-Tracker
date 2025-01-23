@@ -46,7 +46,7 @@ const Exercises = () => {
                 <table className='Exercises-table'>
                     <thead>
                         <tr>
-                            <th>Exercise Name</th>
+                            <th>Exercise Name:</th>
                         </tr>
                     </thead>
                     <tbody>
