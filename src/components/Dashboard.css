@@ -1,39 +1,277 @@
-/* --- Dashboard CSS --- */
-    .Dashboard-container{
+/*
+    -------------------
+    -- Dashboard CSS --
+    -------------------
+*/
+
+/* --- Dashboard Container --- */
+
+@media only screen and (min-width: 1100px){
+    .Dashboard-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        margin-top: 20px;
+        margin: 20px;
+        color: #333;
+        width: 100%;
+    }
+    
+    .Dashboard-container h1 {
+        margin-bottom: 20px;
+        font-size: 2.5em;
+        color: #444;
+    }
+    
+    .Dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        width: 97%;
+        padding: 20px;
+    }
+
+/* --- Dashboard Title & Sub titles --- */
+    .Dashboard-container h1{
         color: whitesmoke;
-        height: 1250px;
-        width: 100%;
-        border: solid 1px #f0f0f0;
+    }
+
+    .Dashboard-container h2{
+        color: whitesmoke;
+    }
+
+/* --- Dashboard Cards --- */
+    .Dashboard-active-users,
+    .Dashboard-recent-workouts,
+    .Dashboard-chart,
+    .Dashboard-exercise-requests,
+    .Dashboard-blog {
+        background-color: transparent;
+        border: solid 1px #ddd;
+        padding: 20px;
         border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-
-/* ---  Active Users --- */
-    .Dashboard-active-users{
-
-    }
-
-/* ---  List of Recent Users --- */
-    .Dashboard-list-of-recent-users{
-
-    }
-
-/* ---  List of Recent Workouts --- */
-    .Dashboard-list-of-recent-workouts{
-
-    }
-
-/* ---   --- */
-    .Dashboard-graph {
-        width: 100%;
-        height: 400px;
+    
+    .Dashboard-active-users h2{
+        font-size: 100px;
         text-align: center;
     }
 
-    .Dashboard-line-chart{
-        margin: 0 auto;
+    .Dashboard-active-users p{
+        font-size: 15px;
+        text-align: center;
+        color: whitesmoke;
+        margin-top: -75px;
     }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    
+    table th,
+    table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    
+    table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+    
+    .ResponsiveContainer {
+        width: 100%;
+        height: 300px;
+    }
+
+    .Dashboard-recent-workouts h2{
+        color: whitesmoke;
+    }
+
+    .Dashboard-recent-workouts tbody{
+        color: whitesmoke;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1100px){
+    .Dashboard-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+        color: #333;
+        width: 100%;
+    }
+    
+    .Dashboard-container h1 {
+        margin-bottom: 20px;
+        font-size: 2.5em;
+        color: #444;
+    }
+    
+    .Dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        width: 97%;
+        padding: 20px;
+    }
+
+/* --- Dashboard Title & Sub titles --- */
+    .Dashboard-container h1{
+        color: whitesmoke;
+    }
+
+    .Dashboard-container h2{
+        color: whitesmoke;
+    }
+
+/* --- Dashboard Cards --- */
+    .Dashboard-active-users,
+    .Dashboard-recent-workouts,
+    .Dashboard-chart,
+    .Dashboard-exercise-requests,
+    .Dashboard-blog {
+        background-color: transparent;
+        border: solid 1px #ddd;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .Dashboard-active-users h2{
+        font-size: 100px;
+        text-align: center;
+    }
+
+    .Dashboard-active-users p{
+        font-size: 15px;
+        text-align: center;
+        color: whitesmoke;
+        margin-top: -75px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    
+    table th,
+    table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    
+    table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+    
+    .ResponsiveContainer {
+        width: 100%;
+        height: 300px;
+    }
+
+    .Dashboard-recent-workouts h2{
+        color: whitesmoke;
+    }
+
+    .Dashboard-recent-workouts tbody{
+        color: whitesmoke;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .Dashboard-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+        color: #333;
+        width: 100%;
+    }
+    
+    .Dashboard-container h1 {
+        margin-bottom: 20px;
+        font-size: 2.5em;
+        color: #444;
+    }
+    
+    .Dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        width: 97%;
+        padding: 20px;
+    }
+
+/* --- Dashboard Title & Sub titles --- */
+    .Dashboard-container h1{
+        color: whitesmoke;
+    }
+
+    .Dashboard-container h2{
+        color: whitesmoke;
+    }
+
+/* --- Dashboard Cards --- */
+    .Dashboard-active-users,
+    .Dashboard-recent-workouts,
+    .Dashboard-chart,
+    .Dashboard-exercise-requests,
+    .Dashboard-blog {
+        background-color: transparent;
+        border: solid 1px #ddd;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .Dashboard-active-users h2{
+        font-size: 100px;
+        text-align: center;
+    }
+
+    .Dashboard-active-users p{
+        font-size: 15px;
+        text-align: center;
+        color: whitesmoke;
+        margin-top: -75px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    
+    table th,
+    table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    
+    table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+    
+    .ResponsiveContainer {
+        width: 100%;
+        height: 300px;
+    }
+
+    .Dashboard-recent-workouts h2{
+        color: whitesmoke;
+    }
+
+    .Dashboard-recent-workouts tbody{
+        color: whitesmoke;
+    }
+}
