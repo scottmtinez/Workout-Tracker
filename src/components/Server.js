@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
     app.use(express.json());
 
 // MongoDB connection details
-    const mongoUrl = 'HIDDEN';
+    const mongoUrl = 'mongodb+srv://scottmtinez:Daisy77sxp@workouttrackercluster.h0dvi.mongodb.net/WorkoutTracker?retryWrites=true&w=majority';
     const dbName = 'WorkoutTracker';
     let db;
 
@@ -178,6 +178,26 @@ const Workout = mongoose.model('Workout', workoutSchema);
         } catch (error) {
             console.error('Error fetching exercises:', error.message);
             res.status(500).json({ error: 'Failed to fetch exercises' });
+        }
+    });
+
+// Get user count
+    const UserSchema = new mongoose.Schema({
+        username: String, 
+        fullName: String,
+        email: String,
+        password: String,
+    });
+
+    const User = mongoose.model('Accounts', UserSchema);
+    
+    // Define API route to fetch user count
+    app.get('/api/users/count', async (req, res) => {
+        try {
+        const userCount = await User.countDocuments(); // Count all users
+        res.status(200).json({ count: userCount });
+        } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch user count' });
         }
     });
 
