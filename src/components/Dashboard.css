@@ -5,6 +5,7 @@
 */
 
 /* --- Dashboard Container --- */
+
 @media only screen and (min-width: 1100px){
     .Dashboard-container {
         display: flex;
@@ -74,10 +75,14 @@
         border: 1px solid #ddd;
         padding: 8px;
         text-align: left;
+        border: 1px solid #ddd;
+        background-color: #2a2a2a;
     }
     
     table th {
-        background-color: #f4f4f4;
+        background-color: black;
+        color: whitesmoke;
+        border: 1px solid #fc7f2c;
         font-weight: bold;
     }
     
@@ -164,10 +169,14 @@
         border: 1px solid #ddd;
         padding: 8px;
         text-align: left;
+        border: 1px solid #ddd;
+        background-color: #2a2a2a;
     }
     
     table th {
-        background-color: #f4f4f4;
+        background-color: black;
+        color: whitesmoke;
+        border: 1px solid #fc7f2c;
         font-weight: bold;
     }
     
@@ -254,10 +263,14 @@
         border: 1px solid #ddd;
         padding: 8px;
         text-align: left;
+        border: 1px solid #ddd;
+        background-color: #2a2a2a;
     }
     
     table th {
-        background-color: #f4f4f4;
+        background-color: black;
+        color: whitesmoke;
+        border: 1px solid #fc7f2c;
         font-weight: bold;
     }
     
@@ -274,5 +287,3 @@
         color: whitesmoke;
     }
 }
-
-
