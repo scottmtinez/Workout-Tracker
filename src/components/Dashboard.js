@@ -39,16 +39,20 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchUserCount = async () => {
       try {
-        const response = await fetch('/api/users/count'); // Adjust the URL if needed
+        const response = await fetch("http://localhost:5000/count"); // Replace with your server URL
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
         setUserCount(data.count); // Update the state with the count
+        console.log("User count:", data.count);
       } catch (error) {
         console.error("Failed to fetch user count:", error);
       }
     };
 
     fetchUserCount();
-  }, []); // Runs only once when the component mounts]
+  }, []); // Empty dependency array ensures this runs once when the component mounts
 
   return (
     <div className="Dashboard-container">
