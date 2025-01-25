@@ -5,7 +5,6 @@
 */
 
 /* --- Dashboard Container --- */
-
 @media only screen and (min-width: 1100px){
     .Dashboard-container {
         display: flex;
