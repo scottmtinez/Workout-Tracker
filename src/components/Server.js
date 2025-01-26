@@ -182,26 +182,46 @@ const Workout = mongoose.model('Workout', workoutSchema);
     });
 
 // Define User Schema and Model
-const UserSchema = new mongoose.Schema({
-    username: { type: String, required: true },
-    fullName: { type: String, required: true },
-    email: { type: String, required: true },
-    password: { type: String, required: true },
-    access: { type: String, required: true }, // Added access field
-});
+    const UserSchema = new mongoose.Schema({
+        username: { type: String, required: true },
+        fullName: { type: String, required: true },
+        email: { type: String, required: true },
+        password: { type: String, required: true },
+        access: { type: String, required: true }, // Added access field
+    });
 
-const User = mongoose.model('User', UserSchema, 'Accounts'); // Third argument specifies the collection name
+    const User = mongoose.model('User', UserSchema, 'Accounts'); // Third argument specifies the collection name
 
-// Define API route to fetch user count
-app.get('/count', async (req, res) => {
-    try {
-        const userCount = await User.countDocuments(); // Count all users
-        res.status(200).json({ count: userCount });
-    } catch (error) {
-        console.error('Failed to fetch user count:', error.message);
-        res.status(500).json({ error: 'Failed to fetch user count' });
-    }
-});
+// Fetch user count
+    app.get('/count', async (req, res) => {
+        try {
+            const userCount = await User.countDocuments(); // Count all users
+            res.status(200).json({ count: userCount });
+        } catch (error) {
+            console.error('Failed to fetch user count:', error.message);
+            res.status(500).json({ error: 'Failed to fetch user count' });
+        }
+    });
+
+// Fetch List of Recent workouts and time of workout
+
+
+// Fetch Users Workouts Overview
+
+
+// Fetch Exercises that want to be added to ExerciseDB
+
+        // Add Exercise to ExerciseDB
+
+        // Reject Exercise request
+
+// Fetch Blog posts that want to be posted to BlogDB
+
+    // Add Blog post to BlogDB
+
+    // Reject Blog post request
+
+// Fetch 
 
 // Root Route
     app.get('/', (req, res) => {
@@ -214,3 +234,4 @@ app.get('/count', async (req, res) => {
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
     });
+
