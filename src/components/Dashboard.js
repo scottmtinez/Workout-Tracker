@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   // Fetch users and workout data when the component mounts
   useEffect(() => {
-    // Mock data retrieval (replace with API calls in production)
+   
     const storedUsers = [
       { id: 1, name: "User 1", email: "user1@example.com", workoutsCompleted: 10 },
       { id: 2, name: "User 2", email: "user2@example.com", workoutsCompleted: 5 },
@@ -27,13 +27,14 @@ const Dashboard = () => {
     ];
     setUsers(storedUsers);
 
+
     const storedWorkouts = [
       { id: 1, name: "Workout A", date: "2025-01-15" },
       { id: 2, name: "Workout B", date: "2025-01-14" },
       { id: 3, name: "Workout C", date: "2025-01-13" },
     ];
     setRecentWorkouts(storedWorkouts);
-  }, []); // Runs only once when the component mounts
+  }, []); 
 
 // Fetch the user count from the backend
   useEffect(() => {
