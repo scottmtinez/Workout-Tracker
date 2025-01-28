@@ -3,49 +3,53 @@ import './NavBar.css';
 import { NavLink, useLocation } from 'react-router-dom';
 
 function NavBar() {
-  //States
-    const [user, setUser] = useState(null);
-    const location = useLocation();
-    const [activeTab, setActiveTab] = useState('/home');
-      
+  // States
+  const [user, setUser] = useState(null); // User state initialized as null
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState('/home');
+
   // Retrieve user data from localStorage when the component mounts
-    useEffect(() => {
-      const storedUser = localStorage.getItem('user');
-      
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-        console.log('User data retrieved from localStorage:', storedUser); // For Testing
-        }
-      }, []); // Runs only once when the component mounts
-  
   useEffect(() => {
-    setActiveTab(location.pathname); 
+    const storedUser = localStorage.getItem('user'); // Read from localStorage
+    if (storedUser) {
+      setUser(JSON.parse(storedUser)); // Set user state with parsed data from localStorage
+      console.log('User data retrieved from localStorage:', storedUser); // For testing
+    }
+  }, []); // Only runs once when the component mounts
+
+  useEffect(() => {
+    setActiveTab(location.pathname); // Update active tab whenever the location changes
   }, [location]);
 
   return (
     <div className="NavBar">
-      <nav className='NavBar-nav-container'>
-        <ul className='NavBar-nav-links'>
+      <nav className="NavBar-nav-container">
+        <ul className="NavBar-nav-links">
           <li className={`NavBar-link ${activeTab === '/home' ? 'active-tab' : ''}`}>
-            <NavLink to='/home' className={activeTab === '/home' ? 'active-tab' : ''}>HOME</NavLink>
+            <NavLink to="/home" className={activeTab === '/home' ? 'active-tab' : ''}>HOME</NavLink>
           </li>
           <li className={`NavBar-link ${activeTab === '/myWorkout' ? 'active-tab' : ''}`}>
-            <NavLink to='/myWorkout' className={activeTab === '/myWorkout' ? 'active-tab' : ''}>MY WORKOUT</NavLink>
+            <NavLink to="/myWorkout" className={activeTab === '/myWorkout' ? 'active-tab' : ''}>MY WORKOUT</NavLink>
           </li>
           <li className={`NavBar-link ${activeTab === '/community' ? 'active-tab' : ''}`}>
-            <NavLink to='/community' className={activeTab === '/community' ? 'active-tab' : ''}>COMMUNITY</NavLink>
+            <NavLink to="/community" className={activeTab === '/community' ? 'active-tab' : ''}>COMMUNITY</NavLink>
           </li>
           <li className={`NavBar-link ${activeTab === '/exercises' ? 'active-tab' : ''}`}>
-            <NavLink to='/exercises' className={activeTab === '/exercises' ? 'active-tab' : ''}>EXERCISES</NavLink>
+            <NavLink to="/exercises" className={activeTab === '/exercises' ? 'active-tab' : ''}>EXERCISES</NavLink>
           </li>
           <li className={`NavBar-link ${activeTab === '/food' ? 'active-tab' : ''}`}>
-            <NavLink to='/food' className={activeTab === '/food' ? 'active-tab' : ''}>MY PLATE</NavLink>
+            <NavLink to="/food" className={activeTab === '/food' ? 'active-tab' : ''}>MY PLATE</NavLink>
           </li>
-          <li className={`NavBar-link ${activeTab === '/dashboard' ? 'active-tab' : ''}`}>
-            <NavLink to='/dashboard' className={activeTab === '/dashboard' ? 'active-tab' : ''}>DASHBOARD</NavLink>
-          </li>
+
+          {/* Conditionally render the Dashboard tab based on user data */}
+          {user && user.username === 'Scottmtinez' && (
+            <li className={`NavBar-link ${activeTab === '/dashboard' ? 'active-tab' : ''}`}>
+              <NavLink to="/dashboard" className={activeTab === '/dashboard' ? 'active-tab' : ''}>DASHBOARD</NavLink>
+            </li>
+          )}
+
           <li className={`NavBar-link ${activeTab === '/account' ? 'active-tab' : ''}`}>
-            <NavLink to='/account' className={activeTab === '/account' ? 'active-tab' : ''}>ACCOUNT</NavLink>
+            <NavLink to="/account" className={activeTab === '/account' ? 'active-tab' : ''}>ACCOUNT</NavLink>
           </li>
         </ul>
       </nav>
