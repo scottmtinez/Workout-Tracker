@@ -44,7 +44,8 @@
     .Dashboard-recent-workouts,
     .Dashboard-chart,
     .Dashboard-exercise-requests,
-    .Dashboard-blog {
+    .Dashboard-blog,
+    .Dashboard-feedback {
         background-color: transparent;
         border: solid 1px #ddd;
         padding: 20px;
@@ -138,7 +139,8 @@
     .Dashboard-recent-workouts,
     .Dashboard-chart,
     .Dashboard-exercise-requests,
-    .Dashboard-blog {
+    .Dashboard-blog,
+    .Dashboard-feedback {
         background-color: transparent;
         border: solid 1px #ddd;
         padding: 20px;
@@ -232,7 +234,8 @@
     .Dashboard-recent-workouts,
     .Dashboard-chart,
     .Dashboard-exercise-requests,
-    .Dashboard-blog {
+    .Dashboard-blog,
+    .Dashboard-feedback {
         background-color: transparent;
         border: solid 1px #ddd;
         padding: 20px;
