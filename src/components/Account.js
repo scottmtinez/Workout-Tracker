@@ -53,6 +53,7 @@ const Account = () => {
                     const userData = await response.json();
                     setUser(userData); // Set the user data in state
                     setLoginData({ username: "", password: "" }); // Clear login form
+                    window.location.reload(); // Refresh the page to reflect the user data
                 } else {
                     const errorData = await response.json();
                     alert(errorData.error || "Failed to login");
@@ -124,9 +125,20 @@ const Account = () => {
                     <div className='Account-user-workout-heatmap'>
                         
                     </div>
-                    <button className="Account-logout-button" onClick={() => setUser(null)}>
+                    <div className='Account-user-personal-info'>
+                        Height: 5'10"
+                        Weight: 160 lbs
+                    </div>
+                    <button 
+                        className="Account-logout-button" 
+                        onClick={() => {
+                            setUser(null);
+                            window.location.reload(); // This will reload the page
+                        }}
+                    >
                         Logout
                     </button>
+
                     
                 </div>
             ) : isLoginForm ? (
