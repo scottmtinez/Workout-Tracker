@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   // Fetch users and workout data when the component mounts
   useEffect(() => {
-   
+    // Mock data retrieval (replace with API calls in production)
     const storedUsers = [
       { id: 1, name: "User 1", email: "user1@example.com", workoutsCompleted: 10 },
       { id: 2, name: "User 2", email: "user2@example.com", workoutsCompleted: 5 },
@@ -27,25 +27,24 @@ const Dashboard = () => {
     ];
     setUsers(storedUsers);
 
-
     const storedWorkouts = [
       { id: 1, name: "Workout A", date: "2025-01-15" },
       { id: 2, name: "Workout B", date: "2025-01-14" },
       { id: 3, name: "Workout C", date: "2025-01-13" },
     ];
     setRecentWorkouts(storedWorkouts);
-  }, []); 
+  }, []); // Runs only once when the component mounts
 
 // Fetch the user count from the backend
   useEffect(() => {
     const fetchUserCount = async () => {
       try {
-        const response = await fetch("http://localhost:5000/count"); // Replace with your server URL
+        const response = await fetch("http://localhost:5000/count"); 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setUserCount(data.count); // Update the state with the count
+        setUserCount(data.count); // Updates the state with the count
         console.log("User count:", data.count);
       } catch (error) {
         console.error("Failed to fetch user count:", error);
@@ -88,7 +87,7 @@ const Dashboard = () => {
         </div>
 
         <div className="Dashboard-chart">
-          <h2>Users Workouts Overview</h2>
+          <h2>Completed Workouts</h2>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart
               data={users.map((user) => ({
@@ -145,6 +144,11 @@ const Dashboard = () => {
               />
             </LineChart>
           </ResponsiveContainer>
+        </div>
+
+        <div className="Dashboard-feedback">
+          <h2>Feedback</h2>
+          <p>Feedback from users goes here</p>
         </div>
       </div>
     </div>
