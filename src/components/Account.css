@@ -1,3 +1,9 @@
+/*
+    -------------------
+    -- Account CSS ----
+    -------------------
+*/
+
 /* --- Account Main CSS --- */
   .Account-container {
       display: flex;
@@ -158,6 +164,43 @@
       background-color: #2E8B57;
       transform: scale(1.1); /* Slightly increase size */
       transition: transform 0.2s ease-in-out; /* Smooth animation */
+    }
+
+    .Account-user-personal-info{
+      background-color: transparent;
+      color: whitesmoke;
+      margin-bottom: 15px;
+    }
+
+/* ---  More Users Information CSS --- */
+    .Account-user-height{
+      background-color: transparent;
+    }
+    
+    .Account-user-weight{
+      background-color: transparent;
+    }
+
+    .Account-user-age{
+      background-color: transparent;
+    }
+
+    .Account-user-bmi{
+        background-color: transparent;
+    }
+
+    .edit-link{
+      color: purple;
+      text-decoration: none;
+      background-color: transparent;
+    }
+
+    .edit-link:hover{
+      color: #fc7f2c;
+    }
+
+    .edit-link:active{
+      color: #fc7f2c;
     }
 
 /* --- Bootstrap Icon -- */
