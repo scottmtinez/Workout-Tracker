@@ -114,6 +114,22 @@ const Account = () => {
             }
         };
     
+        const [userInfo, setUserInfo] = useState({
+            height: "5'10\"",
+            weight: "160 lbs",
+            bmi: "22.9",
+            age: "25",
+        });
+
+        const handleEdit = (field) => {
+            const newValue = prompt(`Edit ${field}`, userInfo[field]);
+            if (newValue) {
+                setUserInfo({
+                    ...userInfo,
+                    [field]: newValue,
+                });
+            }
+        };
     
     return (
         <div className="Account-container">
@@ -126,9 +142,60 @@ const Account = () => {
                         
                     </div>
                     <div className='Account-user-personal-info'>
-                        Height: 5'10"
-                        Weight: 160 lbs
+                        <div className='Account-user-height'>
+                            Height: {userInfo.height}{' '}
+                            <a
+                                href='#'
+                                className='edit-link'
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handleEdit('height');
+                                }}
+                            >
+                                Edit
+                            </a>
+                        </div>
+                        <div className='Account-user-weight'>
+                            Weight: {userInfo.weight}{' '}
+                            <a
+                                href='#'
+                                className='edit-link'
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handleEdit('weight');
+                                }}
+                            >
+                                Edit
+                            </a>
+                        </div>
+                        <div className='Account-user-bmi'>
+                            BMI: {userInfo.bmi}{' '}
+                            <a
+                                href='#'
+                                className='edit-link'
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handleEdit('bmi');
+                                }}
+                            >
+                                Edit
+                            </a>
+                        </div>
+                        <div className='Account-user-age'>
+                            Age: {userInfo.age}{' '}
+                            <a
+                                href='#'
+                                className='edit-link'
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handleEdit('age');
+                                }}
+                            >
+                                Edit
+                            </a>
+                        </div>
                     </div>
+
                     <button 
                         className="Account-logout-button" 
                         onClick={() => {
