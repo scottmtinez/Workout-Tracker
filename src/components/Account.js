@@ -15,7 +15,6 @@ const Account = () => {
             age: "n/a",
         });
 
-
     // Load user data from localStorage when the component mounts
         useEffect(() => {
             const savedUser = localStorage.getItem('user');
