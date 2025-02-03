@@ -14,7 +14,8 @@ const Account = () => {
             bmi: "n/a",
             age: "n/a",
         });
-
+// 
+//
 
     // Load user data from localStorage when the component mounts
         useEffect(() => {
