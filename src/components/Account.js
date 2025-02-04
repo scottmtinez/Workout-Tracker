@@ -14,8 +14,6 @@ const Account = () => {
             bmi: "n/a",
             age: "n/a",
         });
-// 
-//
 
     // Load user data from localStorage when the component mounts
         useEffect(() => {
@@ -168,7 +166,7 @@ const Account = () => {
                     </div>
                     <div className='Account-user-personal-info'>
                         <div className='Account-user-height'>
-                            Height: {userInfo.height}{' '}
+                            Height: {user.height}{' '}
                             <a
                                 href='#'
                                 className='edit-link'
@@ -181,7 +179,7 @@ const Account = () => {
                             </a>
                         </div>
                         <div className='Account-user-weight'>
-                            Weight: {userInfo.weight}{' '}
+                            Weight: {user.weight}{' '} lbs.
                             <a
                                 href='#'
                                 className='edit-link'
@@ -194,7 +192,7 @@ const Account = () => {
                             </a>
                         </div>
                         <div className='Account-user-bmi'>
-                            BMI: {userInfo.bmi}{' '}
+                            BMI: {user.bmi}{' '}
                             <a
                                 href='#'
                                 className='edit-link'
@@ -207,7 +205,7 @@ const Account = () => {
                             </a>
                         </div>
                         <div className='Account-user-age'>
-                            Age: {userInfo.age}{' '}
+                            Age: {user.age}{' '}
                             <a
                                 href='#'
                                 className='edit-link'
