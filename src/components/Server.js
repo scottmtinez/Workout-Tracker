@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
     app.use(express.json());
 
 // MongoDB connection details
-    const mongoUrl = 'HIDDEN';
+    const mongoUrl = 'mongodb+srv://scottmtinez:Daisy77sxp@workouttrackercluster.h0dvi.mongodb.net/WorkoutTracker?retryWrites=true&w=majority';
     const dbName = 'WorkoutTracker';
     let db;
 
@@ -92,6 +92,44 @@ const mongoose = require('mongoose');
         }
     });
 
+    // User Info Schema --- Add height, weight, bmi, and age fields
+        const userSchema = new mongoose.Schema({
+            username: { type: String, required: true, unique: true },
+            fullName: { type: String, required: true },
+            email: { type: String, required: true, unique: true },
+            password: { type: String, required: true },
+            height: { type: Number, default: null },
+            weight: { type: Number, default: null },
+            bmi: { type: Number, default: null },
+            age: { type: Number, default: null }
+        }, { timestamps: true });
+        
+        module.exports = mongoose.model('UseInfo', userSchema, 'Accounts');
+
+    // **Fetch User Info**
+        app.get("/UserInfo/:userId", async (req, res) => {
+            try {
+                const user = await User.findById(req.params.userId).select("height weight bmi age");
+                if (!user) return res.status(404).json({ error: "User not found." });
+                res.json(user);
+            } catch (error) {
+                res.status(500).json({ error: "Error fetching user info." });
+            }
+        });
+
+    // **Update User Info**
+        app.patch("/UserInfo", async (req, res) => {
+            const { userId, ...updateData } = req.body;
+
+            try {
+                const updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true }).select("height weight bmi age");
+                if (!updatedUser) return res.status(404).json({ error: "User not found." });
+                res.json({ updatedUser });
+            } catch (error) {
+                res.status(500).json({ error: "Error updating user info." });
+            }
+        });
+        
     // Workout Schema
         const workoutSchema = new mongoose.Schema({
             username: { type: String, required: true },  // Add username to associate workout with a user
@@ -114,7 +152,7 @@ const mongoose = require('mongoose');
             ],
         });
 
-const Workout = mongoose.model('Workout', workoutSchema);
+        const Workout = mongoose.model('Workout', workoutSchema);
 
 // Save Workout Data
     app.post('/workouts', async (req, res) => {
@@ -234,4 +272,3 @@ const Workout = mongoose.model('Workout', workoutSchema);
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
     });
-
