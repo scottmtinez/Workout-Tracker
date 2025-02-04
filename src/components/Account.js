@@ -152,7 +152,6 @@ const Account = () => {
                 }
             }
         };
-    
         
     return (
         <div className="Account-container">
