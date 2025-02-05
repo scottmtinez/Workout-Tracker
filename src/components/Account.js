@@ -15,7 +15,7 @@ const Account = () => {
             age: "n/a",
         });
 //
-//
+//maybe add a patch instead of a post 
 //
     // Load user data from localStorage when the component mounts
         useEffect(() => {
