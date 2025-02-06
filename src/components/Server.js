@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
     app.use(express.json());
 
 // MongoDB connection details
-    const mongoUrl = 'mongodb+srv://scottmtinez:Daisy77sxp@workouttrackercluster.h0dvi.mongodb.net/WorkoutTracker?retryWrites=true&w=majority';
+    const mongoUrl = 'HIDDEN';
     const dbName = 'WorkoutTracker';
     let db;
 
@@ -110,8 +110,7 @@ const mongoose = require('mongoose');
         module.exports = UserInfo;
 
     // Fetch User Info
-        
-    // Update User Info with PATCH
+    // NOTE: This route is not complete. You need to add the logic to fetch user info from the database
 
         
     // Workout Schema
