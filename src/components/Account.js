@@ -14,9 +14,7 @@ const Account = () => {
             bmi: "n/a",
             age: "n/a",
         });
-//
-//maybe add a patch instead of a post 
-//
+
     // Load user data from localStorage when the component mounts
         useEffect(() => {
             const savedUser = localStorage.getItem('user');
@@ -122,39 +120,13 @@ const Account = () => {
             }
         };
 
-    // Fetch user info from the server when the user logs in NOTE: NEEDS FIXED
+    // Fetch user info from the server when the user logs in 
+    // NOTE: NEEDS FIXED
         const handleEdit = async (field) => {
-            const newValue = prompt(`Edit ${field}`, userInfo[field]);
-            if (newValue) {
-                try {
-                    console.log("Sending userId:", user._id); // Check the userId sent
-                    const response = await fetch("http://localhost:5000/UserInfo", {
-                        method: "POST", // Using POST instead of PATCH
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: `Bearer ${user.token}`,
-                        },
-                        body: JSON.stringify({
-                            userId: user._id, // Ensure userId is being passed
-                            [field]: newValue,
-                        }),
-                    });
         
-                    const result = await response.json();
-                    if (response.ok) {
-                        setUserInfo(result.updatedUser);
-                        alert(`${field} updated successfully.`);
-                    } else {
-                        console.error("Error response:", result);
-                        alert(result.error || "Failed to update user info.");
-                    }
-                } catch (error) {
-                    console.error("Error updating user info:", error);
-                    alert("An error occurred while updating your information.");
-                }
-            }
         };
-        
+
+    
     return (
         <div className="Account-container">
             {user ? (
