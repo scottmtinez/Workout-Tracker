@@ -3,52 +3,56 @@ import './Community.css';
 
 function Community() {
   // States
-  const [leaderboard, setLeaderboard] = useState([]);
-  const [user, setUser] = useState(null);
-  const [posts, setPosts] = useState([]);
-  const [newPost, setNewPost] = useState('');
-  const [newComment, setNewComment] = useState({});
+    const [leaderboard, setLeaderboard] = useState([]);
+    const [user, setUser] = useState(null);
+    const [posts, setPosts] = useState([]);
+    const [newPost, setNewPost] = useState('');
+    const [newComment, setNewComment] = useState({});
 
   // Retrieve user data from localStorage when the component mounts
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
+    useEffect(() => {
+      const storedUser = localStorage.getItem('user');
 
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-      console.log('User data retrieved from localStorage:', storedUser); // For Testing
-    }
-  }, []); // Runs only once when the component mounts
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+        console.log('User data retrieved from localStorage:', storedUser); // For Testing
+      }
+    }, []); // Runs only once when the component mounts
 
-  const handlePostSubmit = () => {
-    if (newPost.trim() === '') return;
+    const handlePostSubmit = () => {
+      if (newPost.trim() === '') return;
 
-    const post = {
-      id: Date.now(),
-      user: user.username,
-      content: newPost,
-      comments: [],
+      const post = {
+        id: Date.now(),
+        user: user.username,
+        content: newPost,
+        comments: [],
+      };
+
+      setPosts([...posts, post]);
+      setNewPost('');
     };
 
-    setPosts([...posts, post]);
-    setNewPost('');
-  };
+    const handleCommentSubmit = (postId) => {
+      if (newComment[postId]?.trim() === '') return;
 
-  const handleCommentSubmit = (postId) => {
-    if (newComment[postId]?.trim() === '') return;
+      const updatedPosts = posts.map((post) => {
+        if (post.id === postId) {
+          return {
+            ...post,
+            comments: [...post.comments, { user: user.username, content: newComment[postId] }],
+          };
+        }
+        return post;
+      });
 
-    const updatedPosts = posts.map((post) => {
-      if (post.id === postId) {
-        return {
-          ...post,
-          comments: [...post.comments, { user: user.username, content: newComment[postId] }],
-        };
-      }
-      return post;
-    });
+      setPosts(updatedPosts);
+      setNewComment({ ...newComment, [postId]: '' });
+    };
 
-    setPosts(updatedPosts);
-    setNewComment({ ...newComment, [postId]: '' });
-  };
+  // Send Posts to MongoDB cluster 'Comments' collection
+
+  // Retrieve Posts from MongoDB cluster 'Comments' collection
 
   return (
     <div className='Community-container'>
