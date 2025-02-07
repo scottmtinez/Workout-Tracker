@@ -4,6 +4,7 @@ import './Community.css';
 function Community() {
   // State for posts
   const [posts, setPosts] = useState([]);
+  const [newPost, setNewPost] = useState('');
 
   // Fetch posts from MongoDB when component mounts
   useEffect(() => {
@@ -20,9 +21,39 @@ function Community() {
     fetchPosts();
   }, []);
 
+  // Handle Post Submit
+  const handlePostSubmit = async () => {
+    if (newPost.trim() === '') return;
+
+    const post = {
+      username: 'Anonymous', // Replace with actual user data if available
+      content: newPost,
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/posts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(post),
+      });
+
+      if (response.ok) {
+        const savedPost = await response.json();
+        setPosts([...posts, savedPost]);
+        setNewPost('');
+      } else {
+        console.error('Failed to save post');
+      }
+    } catch (error) {
+      console.error('Error submitting post:', error);
+    }
+  };
+
   return (
     <div className='Community-container'>
       <h2 className='Community-title'>The Community</h2>
+
+      {/* Display Posts */}
       <div className='Community-posts'>
         {Array.isArray(posts) && posts.length > 0 ? (
           posts.map((post) => (
@@ -37,6 +68,17 @@ function Community() {
           <p>No posts available</p>
         )}
       </div>
+
+      {/* Post Creation Section */}
+      <div className='Community-new-post'>
+        <textarea
+          value={newPost}
+          onChange={(e) => setNewPost(e.target.value)}
+          placeholder='Write a new post...'
+        />
+        <button onClick={handlePostSubmit}>Post</button>
+      </div>
+      
     </div>
   );
 }
