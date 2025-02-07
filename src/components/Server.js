@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
     app.use(express.json());
 
 // MongoDB connection details
-    const mongoUrl = 'HIDDEN';
+    const mongoUrl = 'mongodb+srv://scottmtinez:Daisy77sxp@workouttrackercluster.h0dvi.mongodb.net/WorkoutTracker?retryWrites=true&w=majority';
     const dbName = 'WorkoutTracker';
     let db;
 
@@ -237,8 +237,49 @@ const mongoose = require('mongoose');
         // Reject Exercise request
 
 // Fetch Blog posts that want to be posted to BlogDB
+// Define Blog post Schema
+    const postSchema = new mongoose.Schema({
+        username: { type: String, required: true },
+        content: String,
+        date: { type: Date, default: Date.now },
+    });
 
-    // Add Blog post to BlogDB
+    const Post = mongoose.model('Post', postSchema);
+
+    app.get('/posts', async (req, res) => {
+        try {
+          const posts = await Post.find().sort({ date: -1 }); // Sort by most recent
+          res.json(posts);
+        } catch (error) {
+          res.status(500).json({ error: 'Failed to fetch posts' });
+        }
+      });
+      
+    // Add a new post
+        app.post('/posts', async (req, res) => {
+            try {
+            const { username, content } = req.body;
+            if (!username) {
+                return res.status(400).json({ message: 'Username is required' });
+            }
+            const newPost = new Post({ username, content });
+            await newPost.save();
+            res.status(201).json(newPost);
+            } catch (error) {
+            res.status(500).json({ message: 'Error creating post' });
+            }
+        });
+  
+    // Delete a post
+        app.delete('/posts/:id', async (req, res) => {
+            try {
+                const { id } = req.params;
+                await Post.findByIdAndDelete(id);
+                res.status(200).json({ message: 'Post deleted successfully' });
+            } catch (error) {
+                res.status(500).json({ error: 'Failed to delete post' });
+            }
+        });
 
     // Reject Blog post request
 
