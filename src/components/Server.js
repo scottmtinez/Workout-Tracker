@@ -241,7 +241,13 @@ const mongoose = require('mongoose');
     const postSchema = new mongoose.Schema({
         username: { type: String, required: true },
         content: String,
-        date: { type: Date, default: Date.now },
+        comments: [
+        {
+            username: String,
+            content: String,
+            timestamp: { type: Date, default: Date.now },
+        },
+        ],
     });
 
     const Post = mongoose.model('Post', postSchema);
@@ -267,6 +273,28 @@ const mongoose = require('mongoose');
             res.status(201).json(newPost);
             } catch (error) {
             res.status(500).json({ message: 'Error creating post' });
+            }
+        });
+
+    // Add a comment to a post
+        app.post('/posts/:id/comment', async (req, res) => {
+            try {
+            const { username, content } = req.body;
+            if (!username || !content) {
+                return res.status(400).json({ message: 'Username and content are required' });
+            }
+        
+            const post = await Post.findById(req.params.id);
+            if (!post) {
+                return res.status(404).json({ message: 'Post not found' });
+            }
+        
+            post.comments.push({ username, content });
+            await post.save();
+        
+            res.status(200).json(post);
+            } catch (error) {
+            res.status(500).json({ message: 'Error adding comment' });
             }
         });
   
