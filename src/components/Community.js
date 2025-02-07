@@ -3,51 +3,91 @@ import './Community.css';
 
 function Community() {
   // State for posts
-  const [posts, setPosts] = useState([]);
-  const [newPost, setNewPost] = useState('');
+    const [posts, setPosts] = useState([]);
+    const [newPost, setNewPost] = useState('');
+    const [newComment, setNewComment] = useState({});
 
   // Fetch posts from MongoDB when component mounts
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/posts');
-        const data = await response.json();
-        setPosts(Array.isArray(data) ? data : []);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
-        setPosts([]);
-      }
-    };
-    fetchPosts();
-  }, []);
+    useEffect(() => {
+      const fetchPosts = async () => {
+        try {
+          const response = await fetch('http://localhost:5000/posts');
+          const data = await response.json();
+          setPosts(Array.isArray(data) ? data : []);
+        } catch (error) {
+          console.error('Error fetching posts:', error);
+          setPosts([]);
+        }
+      };
+      fetchPosts();
+    }, []);
 
   // Handle Post Submit
-  const handlePostSubmit = async () => {
-    if (newPost.trim() === '') return;
+    const handlePostSubmit = async () => {
+      if (newPost.trim() === '') return;
 
-    const post = {
-      username: 'Anonymous', // Replace with actual user data if available
-      content: newPost,
+      const post = {
+        username: 'Anonymous', // Replace with actual user data if available
+        content: newPost,
+      };
+
+      try {
+        const response = await fetch('http://localhost:5000/posts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(post),
+        });
+
+        if (response.ok) {
+          const savedPost = await response.json();
+          setPosts([...posts, savedPost]);
+          setNewPost('');
+        } else {
+          console.error('Failed to save post');
+        }
+      } catch (error) {
+        console.error('Error submitting post:', error);
+      }
     };
 
-    try {
-      const response = await fetch('http://localhost:5000/posts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(post),
-      });
-
-      if (response.ok) {
-        const savedPost = await response.json();
-        setPosts([...posts, savedPost]);
-        setNewPost('');
-      } else {
-        console.error('Failed to save post');
+  // Handle comment submission
+    const handleCommentSubmit = async (postId) => {
+      if (!newComment[postId] || newComment[postId].trim() === '') return;
+  
+      try {
+        const response = await fetch(`http://localhost:5000/posts/${postId}/comment`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: 'Logged-in-User', content: newComment[postId] }),
+        });
+  
+        if (response.ok) {
+          const updatedPost = await response.json();
+          setPosts(posts.map((post) => (post._id === postId ? updatedPost : post)));
+          setNewComment({ ...newComment, [postId]: '' });
+        }
+      } catch (error) {
+        console.error('Error submitting comment:', error);
       }
-    } catch (error) {
-      console.error('Error submitting post:', error);
-    }
-  };
+    };
+
+  // Handle post deletion
+    const handleDeletePost = async (postId) => {
+      try {
+        const response = await fetch(`http://localhost:5000/posts/${postId}`, {
+          method: 'DELETE',
+        });
+        
+        if (response.ok) {
+          setPosts(posts.filter((post) => post._id !== postId));
+        } else {
+          console.error('Failed to delete post');
+        }
+      } catch (error) {
+        console.error('Error deleting post:', error);
+      }
+    };
+  
 
   return (
     <div className='Community-container'>
@@ -62,6 +102,21 @@ function Community() {
                 <span>{post.content}</span><br />
                 <span className='Community-post-user'>{post.username}</span>
               </p>
+
+              {/* Display comments */}
+              <div className='Community-comments'>
+                {post.comments?.map((comment, index) => (
+                  <p key={index}><strong>{comment.username}</strong>: {comment.content}</p>
+                ))}
+              </div>
+
+              {/* Comment input */}
+              <textarea
+                value={newComment[post._id] || ''}
+                onChange={(e) => setNewComment({ ...newComment, [post._id]: e.target.value })}
+                placeholder='Write a comment...'
+              />
+              <button onClick={() => handleCommentSubmit(post._id)}>Comment</button>
             </div>
           ))
         ) : (
