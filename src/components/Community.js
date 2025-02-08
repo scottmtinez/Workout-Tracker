@@ -155,8 +155,8 @@ function Community() {
                 onChange={(e) => setNewComment({ ...newComment, [post._id]: e.target.value })}
                 placeholder='Write a comment...'
               />
-              <button className='Community-comment-btn' onClick={() => handleCommentSubmit(post._id)}>Comment</button>
-              <button className='Community-delete-btn' onClick={() => handleDeletePost(post._id)}>Delete</button>
+              <button className='Community-comment-btn' onClick={() => handleCommentSubmit(post._id)}><i class="bi bi-chat-left-text"></i></button>
+              <button className='Community-delete-btn' onClick={() => handleDeletePost(post._id)}><i class="bi bi-trash3"></i></button>
             </div>
           ))
         ) : (
