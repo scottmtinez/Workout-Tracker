@@ -7,6 +7,21 @@ function Community() {
     const [newPost, setNewPost] = useState('');
     const [newComment, setNewComment] = useState({});
 
+  // Fetch posts from Express when component mounts
+    useEffect(() => {
+      fetchPosts();
+    }, []);
+  
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch('/posts');
+        const data = await response.json();
+        setPosts(data);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+
   // Fetch posts from MongoDB when component mounts
     useEffect(() => {
       const fetchPosts = async () => {
@@ -112,11 +127,13 @@ function Community() {
 
               {/* Comment input */}
               <textarea
+                className='Community-comment-input'
                 value={newComment[post._id] || ''}
                 onChange={(e) => setNewComment({ ...newComment, [post._id]: e.target.value })}
                 placeholder='Write a comment...'
               />
-              <button onClick={() => handleCommentSubmit(post._id)}>Comment</button>
+              <button className='Community-comment-btn' onClick={() => handleCommentSubmit(post._id)}>Comment</button>
+              <button className='Community-delete-btn' onClick={() => handleDeletePost(post._id)}>Delete</button>
             </div>
           ))
         ) : (
