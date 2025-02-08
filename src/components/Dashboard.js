@@ -12,27 +12,32 @@ import {
 } from "recharts";
 
 const Dashboard = () => {
-  // States
+// States
   const [users, setUsers] = useState([]);
   const [recentWorkouts, setRecentWorkouts] = useState([]);
   const [userCount, setUserCount] = useState(0);
+  const [pendingExercises, setPendingExercises] = useState([]);
 
-  // Fetch users and workout data when the component mounts
+// Fetch users and workout data when the component mounts
   useEffect(() => {
-    // Mock data retrieval (replace with API calls in production)
-    const storedUsers = [
-      { id: 1, name: "User 1", email: "user1@example.com", workoutsCompleted: 10 },
-      { id: 2, name: "User 2", email: "user2@example.com", workoutsCompleted: 5 },
-      { id: 3, name: "User 3", email: "user3@example.com", workoutsCompleted: 8 },
-    ];
-    setUsers(storedUsers);
 
-    const storedWorkouts = [
-      { id: 1, name: "Workout A", date: "2025-01-15" },
-      { id: 2, name: "Workout B", date: "2025-01-14" },
-      { id: 3, name: "Workout C", date: "2025-01-13" },
-    ];
-    setRecentWorkouts(storedWorkouts);
+    // Mock data retrieval (replace with API calls in production)
+      const storedUsers = [
+        { id: 1, name: "User 1", email: "user1@example.com", workoutsCompleted: 10 },
+        { id: 2, name: "User 2", email: "user2@example.com", workoutsCompleted: 5 },
+        { id: 3, name: "User 3", email: "user3@example.com", workoutsCompleted: 8 },
+      ];
+
+      setUsers(storedUsers);
+
+    // Mock data retrieval (replace with API calls in production)
+      const storedWorkouts = [
+        { id: 1, name: "Workout A", date: "2025-01-15" },
+        { id: 2, name: "Workout B", date: "2025-01-14" },
+        { id: 3, name: "Workout C", date: "2025-01-13" },
+      ];
+
+      setRecentWorkouts(storedWorkouts);
   }, []); // Runs only once when the component mounts
 
 // Fetch the user count from the backend
@@ -53,6 +58,58 @@ const Dashboard = () => {
 
     fetchUserCount();
   }, []); // Empty dependency array ensures this runs once when the component mounts
+
+// Load exercises from localStorage when component mounts
+    useEffect(() => {
+      const storedExercises = JSON.parse(localStorage.getItem('pendingExercises')) || [];
+      setPendingExercises(storedExercises);
+    }, []);
+
+// Function to accept an exercise
+  const acceptExercise = async (exerciseName) => {
+    console.log("📡 Sending request for:", exerciseName);
+
+    try {
+        const response = await fetch('http://localhost:5000/exercises/approve', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: exerciseName }),
+        });
+
+        console.log("📩 Response received:", response);
+
+        if (!response.ok) {
+            throw new Error('Failed to approve exercise');
+        }
+
+        const data = await response.json();
+        console.log("✅ Exercise Approved:", data);
+
+        setPendingExercises(prevExercises =>
+            prevExercises.filter(ex => ex !== exerciseName)
+        );
+    } catch (error) {
+        console.error("❌ Failed to approve exercise:", error);
+    }
+  };
+  
+// Function to reject an exercise
+    const rejectExercise = (exerciseName) => {
+      setPendingExercises(pendingExercises.filter(name => name !== exerciseName));
+      
+      // Update localStorage after rejecting
+      localStorage.setItem('pendingExercises', JSON.stringify(pendingExercises.filter(name => name !== exerciseName)));
+    };
+
+//
+
+
+
+
+
+
+
+
 
   return (
     <div className="Dashboard-container">
@@ -112,44 +169,18 @@ const Dashboard = () => {
         </div>
 
         <div className="Dashboard-exercise-requests">
-          <h2>Exercise Requests</h2>
-          <p>New exercises that need to be added to the database</p>
+        <h2>Pending Exercises for Approval</h2>
+            <ul>
+                {pendingExercises.map((exercise, index) => (
+                    <li key={index}>
+                        {exercise}
+                        <button className='Dashboard-approve-btn' onClick={() => acceptExercise(exercise)}><i class="bi bi-check2"></i></button>
+                        <button className='Dashboard-reject-btn' onClick={() => rejectExercise(exercise)}><i class="bi bi-ban"></i></button>
+                    </li>
+                ))}
+            </ul>
         </div>
 
-        <div className="Dashboard-blog">
-          <h2>Blog</h2>
-          <p>Blog content goes here</p>
-        </div>
-
-        <div className="Dashboard-chart">
-          <h2>Users Workouts Overview</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart
-              data={users.map((user) => ({
-                name: user.name,
-                workouts: user.workoutsCompleted,
-              }))}
-              margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="workouts"
-                stroke="#8884d8"
-                activeDot={{ r: 8 }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-
-        <div className="Dashboard-feedback">
-          <h2>Feedback</h2>
-          <p>Feedback from users goes here</p>
-        </div>
       </div>
     </div>
   );
