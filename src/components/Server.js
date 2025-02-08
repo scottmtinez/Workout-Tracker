@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
     app.use(express.json());
 
 // MongoDB connection details
-    const mongoUrl = 'mongodb+srv://scottmtinez:Daisy77sxp@workouttrackercluster.h0dvi.mongodb.net/WorkoutTracker?retryWrites=true&w=majority';
+    const mongoUrl = 'HIDDEN';
     const dbName = 'WorkoutTracker';
     let db;
 
@@ -231,10 +231,40 @@ const mongoose = require('mongoose');
 
 
 // Fetch Exercises that want to be added to ExerciseDB
+    app.post('/exercises/approve', async (req, res) => {
+        const { name } = req.body;
+        
+        if (!name) {
+            return res.status(400).json({ error: 'Exercise name is required' });
+        }
 
-        // Add Exercise to ExerciseDB
+        try {
+            // Create a new exercise in the database with the approved flag
+                const newExercise = new Exercise({
+                    name,
+                    approved: true,  // Mark as approved
+                });
 
-        // Reject Exercise request
+            // Save the exercise to the database
+                await newExercise.save();
+
+            res.status(200).json({ message: 'Exercise approved and saved to the database!' });
+        } catch (error) {
+            console.error('Error saving exercise:', error);
+            res.status(500).json({ error: 'Failed to save exercise to the database' });
+        }
+    });
+
+// Exercise schema
+    const exerciseSchema = new mongoose.Schema({
+        name: { type: String, required: true },
+        approved: { type: Boolean, default: false },
+    }, { collection: 'Exercises' });
+
+    const Exercise = mongoose.model('Exercise', exerciseSchema);
+
+    module.exports = Exercise;
+
 
 // Fetch Blog posts that want to be posted to BlogDB
 // Define Blog post Schema
