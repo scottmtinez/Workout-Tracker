@@ -99,6 +99,31 @@
     .Dashboard-recent-workouts tbody{
         color: whitesmoke;
     }
+    
+    .bi.bi-check2{
+        color: green;
+        font-weight: bolder;
+        font-size: 15px;
+    }
+
+    .bi.bi-ban{
+        color: red;
+        font-weight: bolder;
+        font-size: 15px;
+    }
+
+    .Dashboard-approve-btn, .Dashboard-reject-btn{
+        all: unset;
+    }
+
+    .Dashboard-approve-btn:hover, .Dashboard-reject-btn:hover{
+        cursor: pointer;
+    }
+
+    li{
+        all: unset;
+        color: rgb(107, 107, 107);
+    }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1100px){
@@ -194,6 +219,31 @@
     .Dashboard-recent-workouts tbody{
         color: whitesmoke;
     }
+
+    .bi.bi-check2{
+        color: green;
+        font-weight: bolder;
+        font-size: 15px;
+    }
+
+    .bi.bi-ban{
+        color: red;
+        font-weight: bolder;
+        font-size: 15px;
+    }
+
+    .Dashboard-approve-btn, .Dashboard-reject-btn{
+        all: unset;
+    }
+
+    .Dashboard-approve-btn:hover, .Dashboard-reject-btn:hover{
+        cursor: pointer;
+    }
+
+    li{
+        all: unset;
+        color: rgb(107, 107, 107);
+    }
 }
 
 @media only screen and (max-width: 600px){
@@ -288,5 +338,30 @@
 
     .Dashboard-recent-workouts tbody{
         color: whitesmoke;
+    }
+
+    .bi.bi-check2{
+        color: green;
+        font-weight: bolder;
+        font-size: 15px;
+    }
+
+    .bi.bi-ban{
+        color: red;
+        font-weight: bolder;
+        font-size: 15px;
+    }
+
+    .Dashboard-approve-btn, .Dashboard-reject-btn{
+        all: unset;
+    }
+
+    .Dashboard-approve-btn:hover, .Dashboard-reject-btn:hover{
+        cursor: pointer;
+    }
+
+    li{
+        all: unset;
+        color: rgb(107, 107, 107);
     }
 }
