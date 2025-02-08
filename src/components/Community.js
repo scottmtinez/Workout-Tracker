@@ -132,14 +132,19 @@ function Community() {
           posts.map((post) => (
             <div key={post._id} className='Community-post'>
               <p>
-                <span>{post.content}</span><br />
+                <span style={{ whiteSpace: 'pre-line' }}>{post.content}</span> 
+                <br />
                 <span className='Community-post-user'>{post.username}</span>
               </p>
 
               {/* Display comments */}
               <div className='Community-comments'>
                 {post.comments?.map((comment, index) => (
-                  <p key={index}><strong>{comment.username}</strong>: {comment.content}</p>
+                  <p key={index}>
+                    <strong>{comment.username}</strong>
+                    <br />
+                    {comment.content}
+                  </p>                
                 ))}
               </div>
 
