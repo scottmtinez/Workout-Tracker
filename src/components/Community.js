@@ -6,6 +6,7 @@ function Community() {
     const [posts, setPosts] = useState([]);
     const [newPost, setNewPost] = useState('');
     const [newComment, setNewComment] = useState({});
+    const [user, setUser] = useState(null);
 
   // Fetch posts from Express when component mounts
     useEffect(() => {
@@ -21,6 +22,23 @@ function Community() {
         console.error('Error fetching posts:', error);
       }
     };
+
+  // Load user data from localStorage when the component mounts
+      useEffect(() => {
+          const savedUser = localStorage.getItem('user');
+          if (savedUser) {
+              setUser(JSON.parse(savedUser));
+          }
+      }, []);
+
+  // Save user data to localStorage when the user state changes
+      useEffect(() => {
+          if (user) {
+              localStorage.setItem('user', JSON.stringify(user)); // Save user data to localStorage
+          } else {
+              localStorage.removeItem('user'); // Remove user data from localStorage when the user logs out
+          }
+      }, [user]);
 
   // Fetch posts from MongoDB when component mounts
     useEffect(() => {
@@ -42,7 +60,7 @@ function Community() {
       if (newPost.trim() === '') return;
 
       const post = {
-        username: 'Anonymous', // Replace with actual user data if available
+        username: user?.username || 'Anonymous', // Use the logged-in user's username if available
         content: newPost,
       };
 
@@ -73,7 +91,7 @@ function Community() {
         const response = await fetch(`http://localhost:5000/posts/${postId}/comment`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username: 'Logged-in-User', content: newComment[postId] }),
+          body: JSON.stringify({ username: user?.username, content: newComment[postId] }),
         });
   
         if (response.ok) {
