@@ -18,28 +18,6 @@ const Dashboard = () => {
   const [userCount, setUserCount] = useState(0);
   const [pendingExercises, setPendingExercises] = useState([]);
 
-// Fetch users and workout data when the component mounts
-  useEffect(() => {
-
-    // Mock data retrieval (replace with API calls in production)
-      const storedUsers = [
-        { id: 1, name: "User 1", email: "user1@example.com", workoutsCompleted: 10 },
-        { id: 2, name: "User 2", email: "user2@example.com", workoutsCompleted: 5 },
-        { id: 3, name: "User 3", email: "user3@example.com", workoutsCompleted: 8 },
-      ];
-
-      setUsers(storedUsers);
-
-    // Mock data retrieval (replace with API calls in production)
-      const storedWorkouts = [
-        { id: 1, name: "Workout A", date: "2025-01-15" },
-        { id: 2, name: "Workout B", date: "2025-01-14" },
-        { id: 3, name: "Workout C", date: "2025-01-13" },
-      ];
-
-      setRecentWorkouts(storedWorkouts);
-  }, []); // Runs only once when the component mounts
-
 // Fetch the user count from the backend
   useEffect(() => {
     const fetchUserCount = async () => {
@@ -104,13 +82,6 @@ const Dashboard = () => {
 //
 
 
-
-
-
-
-
-
-
   return (
     <div className="Dashboard-container">
       <h1 className="Dashboard-h1">Admin Dashboard</h1>
@@ -141,31 +112,6 @@ const Dashboard = () => {
               ))}
             </tbody>
           </table>
-        </div>
-
-        <div className="Dashboard-chart">
-          <h2>Completed Workouts</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart
-              data={users.map((user) => ({
-                name: user.name,
-                workouts: user.workoutsCompleted,
-              }))}
-              margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="workouts"
-                stroke="#8884d8"
-                activeDot={{ r: 8 }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
         </div>
 
         <div className="Dashboard-exercise-requests">
