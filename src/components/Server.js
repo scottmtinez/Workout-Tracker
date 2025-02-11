@@ -108,10 +108,6 @@ const mongoose = require('mongoose');
         const UserInfo = mongoose.model('UserInfo', userSchema);
         
         module.exports = UserInfo;
-
-    // Fetch User Info
-    // NOTE: This route is not complete. You need to add the logic to fetch user info from the database
-
         
     // Workout Schema
         const workoutSchema = new mongoose.Schema({
@@ -224,12 +220,6 @@ const mongoose = require('mongoose');
         }
     });
 
-// Fetch List of Recent workouts and time of workout
-
-
-// Fetch Users Workouts Overview
-
-
 // Fetch Exercises that want to be added to ExerciseDB
     app.post('/exercises/approve', async (req, res) => {
         const { name } = req.body;
@@ -282,14 +272,15 @@ const mongoose = require('mongoose');
 
     const Post = mongoose.model('Post', postSchema);
 
-    app.get('/posts', async (req, res) => {
-        try {
-          const posts = await Post.find().sort({ date: -1 }); // Sort by most recent
-          res.json(posts);
-        } catch (error) {
-          res.status(500).json({ error: 'Failed to fetch posts' });
-        }
-      });
+    // Fetch all posts
+        app.get('/posts', async (req, res) => {
+            try {
+            const posts = await Post.find().sort({ date: -1 }); // Sort by most recent
+            res.json(posts);
+            } catch (error) {
+            res.status(500).json({ error: 'Failed to fetch posts' });
+            }
+        });
       
     // Add a new post
         app.post('/posts', async (req, res) => {
@@ -338,8 +329,6 @@ const mongoose = require('mongoose');
                 res.status(500).json({ error: 'Failed to delete post' });
             }
         });
-
-    // Reject Blog post request
 
 // Fetch 
 
