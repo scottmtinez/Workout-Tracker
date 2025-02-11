@@ -222,3 +222,64 @@
     .Account-user-workout-heatmap{
       
     }
+
+/* --- Workout History --- */
+    .Account-user-workout-history{
+      background-color: transparent;
+      border: solid 1px #fc7f2c;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+
+    .Account-user-workout-history-y{
+      background-color: transparent;
+      color: #ddd;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .Account-user-workout-history-none{
+      background-color: transparent;
+      color: #ddd;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .workout-summary{
+      background-color: transparent;
+      color: whitesmoke;
+      font-size: 20px;
+      font-weight: bolder;
+    }
+
+    p, p strong, .bi.bi-arrow-down-short{
+      background-color: transparent;
+
+    }
+
+    .workout-details{
+      background-color: transparent;
+      color: whitesmoke;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .exercise-item{
+      background-color: transparent;
+      color: whitesmoke;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .exercise-item-title{
+      background-color: transparent;
+
+    }
+
+    .workout-exercises{
+      background-color: transparent;
+    }
+
+    h4{
+      background-color: transparent;
+    }
