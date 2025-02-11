@@ -164,7 +164,7 @@ const Account = () => {
                                                 {workout.exercises && workout.exercises.length > 0 ? (
                                                     workout.exercises.map((exercise, idx) => (
                                                         <div key={idx} className="exercise-item">
-                                                            <p>Exercise {idx + 1}: Name: {exercise.name}</p>
+                                                            <p className='exercise-item-title'>Exercise {idx + 1}: Name: {exercise.name}</p>
                                                         </div>
                                                     ))
                                                 ) : (
