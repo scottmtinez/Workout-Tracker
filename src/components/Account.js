@@ -8,12 +8,8 @@ const Account = () => {
         const [loginData, setLoginData] = useState({ username: "", password: "" });
         const [signupData, setSignupData] = useState({ username: "", fullName: "", email: "", password: "", confirmPassword: "" });
         const [user, setUser] = useState(null); // State to hold the logged-in user's information
-        const [userInfo, setUserInfo] = useState({
-            height: "n/a",
-            weight: "n/a",
-            bmi: "n/a",
-            age: "n/a",
-        });
+        const [workouts, setWorkouts] = useState([]);
+        const [selectedWorkout, setSelectedWorkout] = useState(null)
 
     // Load user data from localStorage when the component mounts
         useEffect(() => {
@@ -120,12 +116,24 @@ const Account = () => {
             }
         };
 
-    // Fetch user info from the server when the user logs in 
-    // NOTE: NEEDS FIXED
-        const handleEdit = async (field) => {
-        
-        };
+    // Handles the workout details toggle
+        useEffect(() => {
+            if (user && user.username) {
+                fetch(`http://localhost:5000/workouts?username=${user.username}`)
+                    .then((response) => response.json()) // Parse the JSON response
+                    .then((data) => {
+                        console.log('Workouts fetched:', data); // Log the response data for debugging
+                        setWorkouts(data); // Update the state with fetched workouts
+                    })
+                    .catch((error) => {
+                        console.error('Error fetching workouts:', error); // Log any error that occurs
+                    });
+            }
+        }, [user]);  // Run this effect whenever `user` changes
 
+        const toggleWorkoutDetails = (index) => {
+            setSelectedWorkout(selectedWorkout === index ? null : index);
+        };
     
     return (
         <div className="Account-container">
@@ -137,59 +145,39 @@ const Account = () => {
                     <div className='Account-user-workout-heatmap'>
                         
                     </div>
-                    <div className='Account-user-personal-info'>
-                        <div className='Account-user-height'>
-                            Height: {user.height}{' '}
-                            <a
-                                href='#'
-                                className='edit-link'
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handleEdit('height');
-                                }}
-                            >
-                                Edit
-                            </a>
-                        </div>
-                        <div className='Account-user-weight'>
-                            Weight: {user.weight}{' '} lbs.
-                            <a
-                                href='#'
-                                className='edit-link'
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handleEdit('weight');
-                                }}
-                            >
-                                Edit
-                            </a>
-                        </div>
-                        <div className='Account-user-bmi'>
-                            BMI: {user.bmi}{' '}
-                            <a
-                                href='#'
-                                className='edit-link'
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handleEdit('bmi');
-                                }}
-                            >
-                                Edit
-                            </a>
-                        </div>
-                        <div className='Account-user-age'>
-                            Age: {user.age}{' '}
-                            <a
-                                href='#'
-                                className='edit-link'
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handleEdit('age');
-                                }}
-                            >
-                                Edit
-                            </a>
-                        </div>
+                    <div className="Account-user-workout-history">
+                        {workouts.length > 0 ? (
+                            workouts.map((workout, index) => (
+                                <div key={workout._id} className="Account-user-workout-history-y">
+                                    <div onClick={() => toggleWorkoutDetails(index)} className="workout-summary">
+                                        <p><strong>Workout {index + 1} <i class="bi bi-arrow-down-short"></i></strong></p>
+                                    </div>
+
+                                    {selectedWorkout === index && (
+                                        <div className="workout-details">
+                                            <p><strong>Elapsed Time:</strong> {workout.elapsedTime} minutes</p>
+                                            <p><strong>Start Time:</strong> {new Date(workout.startTime).toLocaleString()}</p>
+                                            <p><strong>End Time:</strong> {new Date(workout.endTime).toLocaleString()}</p>
+                                            
+                                            <div className="workout-exercises">
+                                                <h4>Exercises:</h4>
+                                                {workout.exercises && workout.exercises.length > 0 ? (
+                                                    workout.exercises.map((exercise, idx) => (
+                                                        <div key={idx} className="exercise-item">
+                                                            <p>Exercise {idx + 1}: Name: {exercise.name}</p>
+                                                        </div>
+                                                    ))
+                                                ) : (
+                                                    <p className='Account-user-workout-history-none'>No exercises recorded.</p>
+                                                )}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            ))
+                        ) : (
+                            <p className='Account-user-workout-history-none'>No workout history available.</p>
+                        )}
                     </div>
 
                     <button 
