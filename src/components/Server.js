@@ -330,7 +330,32 @@ const mongoose = require('mongoose');
             }
         });
 
-// Fetch 
+// Fetch User Workout History
+// Fetch All Workouts for a User
+    app.get('/workouts', async (req, res) => {
+        const { username } = req.query;  // Username sent as a query parameter
+
+        if (!username) {
+            return res.status(400).json({ error: 'Username is required' });
+        }
+
+        try {
+            // Log the username for debugging purposes
+            console.log('Fetching workouts for user:', username);
+            
+            // Fetch all workouts for the logged-in user from the 'workouts' collection
+            const workouts = await Workout.find({ username });
+
+            if (workouts.length === 0) {
+                console.log('No workouts found for this user');
+            }
+
+            res.status(200).json(workouts);  // Send the workout data back to the client
+        } catch (error) {
+            console.error('Error fetching workouts:', error.message);
+            res.status(500).json({ error: 'Failed to fetch workouts' });
+        }
+    });
 
 // Root Route
     app.get('/', (req, res) => {
