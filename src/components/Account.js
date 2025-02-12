@@ -155,16 +155,16 @@ const Account = () => {
 
                                     {selectedWorkout === index && (
                                         <div className="workout-details">
-                                            <p><strong>Elapsed Time:</strong> {workout.elapsedTime} minutes</p>
-                                            <p><strong>Start Time:</strong> {new Date(workout.startTime).toLocaleString()}</p>
-                                            <p><strong>End Time:</strong> {new Date(workout.endTime).toLocaleString()}</p>
+                                            <p className='Account-workout-history-time-elapsed'><strong>Elapsed Time:</strong> {workout.elapsedTime} minutes</p>
+                                            <p className='Account-workout-history-time-start'><strong>Start Time:</strong> {new Date(workout.startTime).toLocaleString()}</p>
+                                            <p className='Account-workout-history-time-end'><strong>End Time:</strong> {new Date(workout.endTime).toLocaleString()}</p>
                                             
                                             <div className="workout-exercises">
-                                                <h4>Exercises:</h4>
+                                                <h4> </h4>
                                                 {workout.exercises && workout.exercises.length > 0 ? (
                                                     workout.exercises.map((exercise, idx) => (
                                                         <div key={idx} className="exercise-item">
-                                                            <p className='exercise-item-title'>Exercise {idx + 1}: Name: {exercise.name}</p>
+                                                            <p className='exercise-item-title'>Exercise {idx + 1}: {exercise.name}</p>
                                                         </div>
                                                     ))
                                                 ) : (
