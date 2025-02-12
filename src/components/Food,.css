@@ -1,0 +1,43 @@
+/*
+    -------------------
+    ----- Food CSS ----
+    -------------------
+*/
+
+    .Food-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        color: whitesmoke;
+    }
+
+    .Food-input-box{
+        padding: 10px;
+        width: 250px;
+        border-radius: 5px;
+        color: whitesmoke;
+    }
+
+    .Food-input-btn{
+        padding: 10px;
+        width: 150px;
+        border-radius: 5px;
+        color: whitesmoke;
+        background-color: #4CAF50;
+        border: none;
+        cursor: pointer;
+        margin-top: 5px;
+    }
+
+    .Food-name-title{
+        font-size: 20px;
+        margin-top: 20px;
+        font-weight: bolder;
+    }
+
+    li{
+        margin: 0 auto;
+    }
+
