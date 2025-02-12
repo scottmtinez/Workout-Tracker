@@ -264,6 +264,22 @@
       font-weight: bold;
     }
 
+    .Account-workout-history-time-elapsed{
+      font-size: 15px;
+      font-weight: bolder;
+      color: #fa9e61;
+    }
+
+    .Account-workout-history-time-start{
+      font-size: 15px;
+      color: rgb(97, 97, 97);
+    }
+
+    .Account-workout-history-time-end{
+      font-size: 15px;
+      color: rgb(97, 97, 97);
+    }
+
     .exercise-item{
       background-color: transparent;
       color: whitesmoke;
@@ -273,7 +289,8 @@
 
     .exercise-item-title{
       background-color: transparent;
-
+      color: rgb(97, 97, 97);
+      font-size: 15px;
     }
 
     .workout-exercises{
